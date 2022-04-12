@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -52,12 +53,34 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Index') }}</a>
+                            </li>
+                            {{-- <li class="nav-item">
+                                <a class="nav-link" href="{{ route('image.create') }}">{{ __('Upload Image') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('like.index') }}">{{ __('My likes') }}</a>
+                            </li>
+                            <li>
+                                <div class="container-avatar">
+                                    @if (Auth::user()->image)
+                                        <img src="{{ route('user.avatar',['filename' => Auth::user()->image]) }}" class="avatar" alt="Avatar usuario">
+                                    @endif
+                                </div>
+                            </li> --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    {{-- <a class="dropdown-item" href="{{ route('profile', ['id' => Auth::user()->id]) }}">
+                                        {{ __('My profile') }}
+                                    </a> --}}
+                                    <a class="dropdown-item" href="{{ route('config'); }}">
+                                        {{ __('Config') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -69,21 +92,21 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                                    {{ __("Choose a language") }}
-
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('set_language', 'es')}}">{{ __("Spanish") }}</a>
-                                    <a class="dropdown-item" href="{{route('set_language', 'en')}}">{{ __("English") }}</a>
-                                    <a class="dropdown-item" href="{{route('set_language', 'fr')}}">{{ __("French") }}</a>
-                                </div>
-                            </li>
                         @endguest
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
+                                {{ __("Choose a language") }}
+
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('set_language', 'es')}}">{{ __("Spanish") }}</a>
+                                <a class="dropdown-item" href="{{route('set_language', 'en')}}">{{ __("English") }}</a>
+                                <a class="dropdown-item" href="{{route('set_language', 'fr')}}">{{ __("French") }}</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

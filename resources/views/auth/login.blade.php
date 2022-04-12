@@ -52,16 +52,21 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-6 text-center offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                            </div>
+                            <div class="col-md-6 text-center offset-md-4">
+                                <br>
+                                <p>{{ __('OR') }}</p>
+                                <br>
+                                <a class="btn social-signin google" href="{{ route('loginGoogle') }}">{{ __("Log in with Google+") }}</a>
                             </div>
                         </div>
                     </form>
