@@ -56,6 +56,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Index') }}</a>
                             </li>
+                            @if (Auth::user()->role == 'admin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.home') }}">{{ __('Admin Panel') }}</a>
+                                </li>
+                            @endif
+
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ route('image.create') }}">{{ __('Upload Image') }}</a>
                             </li>

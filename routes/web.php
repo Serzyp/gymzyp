@@ -58,3 +58,5 @@ Route::get('/google-callback', function () {
     return redirect()->route('home');
     // $user->token
 });
+
+Route::get('/admin', [App\http\Controllers\AdminController::class, 'index'])->name('admin.home');
