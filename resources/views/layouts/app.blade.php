@@ -57,8 +57,26 @@
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Index') }}</a>
                             </li>
                             @if (Auth::user()->role == 'admin')
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.home') }}">{{ __('Admin Panel') }}</a>
+
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('Admin Panel') }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                        <a class="dropdown-item" href="{{ route('admin.home') }}">
+                                            {{ __('Users list') }}
+                                        </a>
+
+                                        <a class="dropdown-item" href="#">
+                                            aaaaaa
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            bbbbbb
+                                        </a>
+
+                                    </div>
                                 </li>
                             @endif
 

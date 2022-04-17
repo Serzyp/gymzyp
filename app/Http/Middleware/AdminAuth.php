@@ -18,9 +18,11 @@ class AdminAuth
     {
         if(auth()->check()){
             if(auth()->user()->role == 'admin'){
-                return route('admin.home');
+                return $next($request);
+            }else{
+                return back();
             }
         }
-        return back();
+        abort(403);
     }
 }

@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,15 +45,21 @@ Route::get('/google-callback', function () {
     if($userExists){
         Auth::login(($userExists));
     }else{
-        $userNew = User::create([
-            'name' => $user->name,
-            'nick' => $user->nickname,
-            'email' => $user->email,
-            'external_id' => $user->id,
-            'external_auth' => 'google',
-        ]);
 
-        Auth::login(($userNew));
+        $emailuserExists = User::where('email',$user->email)->first();
+
+        if(!$emailuserExists){
+
+            $userNew = User::create([
+                'name' => $user->name,
+                'nick' => $user->nickname,
+                'email' => $user->email,
+                'external_id' => $user->id,
+                'external_auth' => 'google',
+            ]);
+
+            Auth::login(($userNew));
+        }
     }
 
     return redirect()->route('home');
@@ -60,3 +67,5 @@ Route::get('/google-callback', function () {
 });
 
 Route::get('/admin', [App\http\Controllers\AdminController::class, 'index'])->name('admin.home');
+
+
