@@ -17,7 +17,7 @@ class CreateTableTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('type');
+            $table->string('name');
             $table->string('image_path');
             $table->text('description');
             $table->timestamps();

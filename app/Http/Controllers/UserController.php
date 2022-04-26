@@ -68,7 +68,7 @@ class UserController extends Controller
         // dd($image_path);
 
         //Ejecuta y consula la base de datos
-        $user -> update();
+        $user->update();
 
         return redirect()->route('config')
                          ->with(['message'=>'Usuario actualizado correctamente']);

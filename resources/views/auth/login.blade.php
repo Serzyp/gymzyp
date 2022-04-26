@@ -66,7 +66,7 @@
                                 <br>
                                 <p>{{ __('OR') }}</p>
                                 <br>
-                                <a class="btn social-signin google" href="{{ route('loginGoogle') }}">{{ __("Log in with Google+") }}</a>
+                                <a class="btn social-signin google" href="{{ route('loginGoogle') }}"><i class="fa-brands fa-google"></i> {{ __("Log in with Google+") }}</a>
                             </div>
                         </div>
                     </form>

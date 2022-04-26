@@ -10,6 +10,9 @@ class Exercise extends Model
     use HasFactory;
 
     protected $table = 'exercise';
+    protected $connection = 'mysql';
+    protected $primaryKey = 'id';
+    protected $guarded = ['id'];
 
 	// Relación de Muchos a Uno
 	public function user(){

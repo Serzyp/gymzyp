@@ -23,10 +23,14 @@ use Illuminate\Support\Facades\Validator;
 
 Auth::routes();
 
+//Vista Inicio
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Selecttor de lenguaje
 Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set_language'])->name('set_language');
 
+
+//Configuración de usuario
 Route::get('/config', [App\Http\Controllers\UserController::class, 'config'])->name('config');
 Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 Route::get('/user/avatar/{filename}', [App\Http\Controllers\UserController::class, 'getImage'])->name('user.avatar');
@@ -65,6 +69,17 @@ Route::get('/google-callback', function () {
     return redirect()->route('home');
     // $user->token
 });
+
+//Vista para las tablas
+
+Route::resource('/myTables',App\Http\Controllers\TableController::class)->names('table');
+Route::get('/myTables/image/{filename}', [App\Http\Controllers\TableController::class, 'getImage'])->name('table.image');
+
+
+//Vista de una tabla con los ejercicios y los dias
+
+Route::get('/myTable/{id}', [App\Http\Controllers\ExerciseController::class, 'index'])->name('table.exercises');
+Route::get('/myTable/get', [App\Http\Controllers\ExerciseController::class, 'getExerciseDatatable'])->name('table.getExerciseDatatable');
 
 
 
