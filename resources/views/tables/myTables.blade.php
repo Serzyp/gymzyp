@@ -151,7 +151,6 @@
             $('#tablesModaTable').modal('show');
         });
 
-        // Save new country
         $('#tablesSubmitForm').click(function(e) {
             /** Problemas con serialize y default form upload
              *
