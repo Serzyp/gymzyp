@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Day;
-use App\Models\User;
-use App\Models\Table;
-use App\Models\Exercise;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Exercise;
+
+
 
 class ExerciseController extends Controller
 {
@@ -36,13 +28,17 @@ class ExerciseController extends Controller
     public function index($id)
     {
 
-        return view('tables.myTableConfig');
+        return view('tables.myTableConfig', ['codTable' => $id]);
     }
 
-    public function getExerciseDatatable(Request $request){
+    public function exerciseDatatable($cod){
 
-            return datatables(Exercise::all())
-                        ->toJson();
+        return Datatables::of(Exercise::join('day', 'day.id', '=', 'exercise.day_id')
+        ->select('exercise.*','day.day','day.moment')
+        ->where('exercise.table_id','=',$cod)
+        ->get())
+
+            ->make(true);
 
 
     }

@@ -140,13 +140,12 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        var url = '{{ route('table.exerciseDatatable',$codTable) }}';
         var datatable = $('#datatable').DataTable({
-            ajax: '',
+            ajax: url,
             serverSide: true,
             processing: true,
             columns: [
-
                 {
                     data: 'id',
                     name: 'id',
@@ -167,6 +166,17 @@
                     name: 'content',
                     title: 'content'
                 },
+                {
+                    data: 'day',
+                    name: 'day',
+                    title: 'day'
+                },
+                {
+                    data: 'moment',
+                    name: 'moment',
+                    title: 'moment'
+                },
+
             ]
 
         });

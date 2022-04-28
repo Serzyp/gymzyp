@@ -77,9 +77,9 @@ Route::get('/myTables/image/{filename}', [App\Http\Controllers\TableController::
 
 
 //Vista de una tabla con los ejercicios y los dias
-
+Route::get('/table/exerciseDatatable/{cod}', [App\Http\Controllers\ExerciseController::class, 'exerciseDatatable'])->name('table.exerciseDatatable');
 Route::get('/myTable/{id}', [App\Http\Controllers\ExerciseController::class, 'index'])->name('table.exercises');
-Route::get('/myTable/get', [App\Http\Controllers\ExerciseController::class, 'getExerciseDatatable'])->name('table.getExerciseDatatable');
+
 
 
 
