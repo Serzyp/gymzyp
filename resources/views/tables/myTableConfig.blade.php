@@ -118,8 +118,13 @@
                         </div>
                     </form>
                 </div>
+                <div class="row mb-2">
+                    <a class="btn btn-success" href="javascript:void(0)" id="createNewExpense"> <i
+                            class="fas fa-plus"></i>
+                        {{ __('messages.add') }}</a>
+                </div>
                 <div class="table-responsive">
-                    <table id="datatable" class="table table-bordered data-table" style="width:100%">
+                    <table id="datatable" class="table table-striped data-table" style="width:100%">
 
                     </table>
                 </div>
@@ -135,6 +140,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        var collapsedGroups = {};
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -143,13 +149,41 @@
         var url = '{{ route('table.exerciseDatatable',$codTable) }}';
         var datatable = $('#datatable').DataTable({
             ajax: url,
+            colReorder: true,
+            autoWidth: false,
+            ordering: false,
             serverSide: true,
+            stateSave: true,
+            //orderable: false,
             processing: true,
+            responsive: true,
+            bLengthChange: false,
+            lengthMenu: [
+                [25, 40, 50],
+                ['25 rows', '40 rows', '50 rows']
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                'pdf',
+                //'copy',
+                'colvis',
+                'pageLength',
+                'excel'
+            ],
+
             columns: [
                 {
                     data: 'id',
                     name: 'id',
                     title: '#'
+                },
+                {
+                    data: 'Actions',
+                    name: 'Actions',
+                    orderable: false,
+                    serachable: false,
+                    sClass: 'text-center',
+                    title: '&nbsp;&nbsp;&nbsp;&nbsp;Actions&nbsp;&nbsp;&nbsp;'
                 },
                 {
                     data: 'sets',
@@ -176,9 +210,61 @@
                     name: 'moment',
                     title: 'moment'
                 },
+                {
+                    data: 'header',
+                    name: 'header',
+                    title: 'Header',
+                    default: ''
+                },
 
-            ]
+            ],
+            rowGroup: {
+                //Sirve para inicializar el rowGroup. La opcion emptyDataGroup lo deja vacío Y SIN MOSTRAR
+                //emptyDataGroup: null,
+                dataSrc: "day_id",
 
+                startRender: function(rows, group) {
+                    var codExp = rows.data()[0].day_id;
+                    var header = rows.data()[0].headerButtons;
+                    var collapsed = !!collapsedGroups[group];
+                    //Mostrar con líneas
+                    if (rows.data()[0].day_id != null) {
+                        rows.nodes().each(function(r) {
+                            r.style.display = collapsed ? 'none' : '';
+                        });
+                        var toggleClass = collapsed ? 'fa-plus-square' : 'fa-minus-square';
+                        // Add category name to the <tr>. NOTE: Hardcoded colspan
+                        return $('<tr/>')
+                            .append('<td  colspan="' + rows.columns()[0].length +
+                                '" ><span class="fa fa-fw ' + toggleClass +
+                                ' toggler collapseSpan" data-name2="' + codExp + '" > </span> ' +
+                                header + ' </td>')
+                            .attr('data-name', codExp)
+                            .toggleClass('collapsed', collapsed);
+                    }
+                    //Ocultar sin líneas (sólo existe cabecera)
+                    else {
+                        rows.nodes().each(function(r) {
+                            r.style.display = collapsed ? '' : 'none';
+                        });
+                        var toggleClass = collapsed ? 'fa-plus-square' : 'fa-minus-square';
+                        return $('<tr/>')
+                            .append('<td  colspan="' + rows.columns()[0].length +
+                                '" ><span class="fa fa-fw fa-stopwatch toggler" data-name2="' +
+                                codExp + '" ></i></span>&nbsp;' + header + ' </td>')
+                            .attr('data-name', codExp)
+                            .toggleClass('collapsed', collapsed);
+                    }
+                }
+            },
+
+        });
+
+        //Collapsar acordeón
+        $('#datatable tbody').on('click', 'svg.collapseSpan', function() {
+            var name = $(this).data('name2');
+            collapsedGroups[name] = !collapsedGroups[name];
+            datatable.draw(false);
         });
     });
 </script>
