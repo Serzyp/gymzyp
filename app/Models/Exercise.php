@@ -9,18 +9,18 @@ class Exercise extends Model
 {
     use HasFactory;
 
-    protected $table = 'exercise';
     protected $connection = 'mysql';
+    protected $table = 'exercise';
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
 
 	// Relación de Muchos a Uno
-	public function user(){
+	public function table(){
 		return $this->belongsTo('App\Models\Table', 'table_id');
 	}
 
 	// Relación de Muchos a Uno
-	public function table(){
+	public function day(){
 		return $this->belongsTo('App\Models\Day', 'day_id');
 	}
 }

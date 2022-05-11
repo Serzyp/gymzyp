@@ -57,7 +57,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="tablesModaTable" data-backdrop="static">
+<div class="modal fade" id="tablesModalTable" data-backdrop="static">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <!-- Modal header -->
@@ -148,7 +148,7 @@
 
         $('#tableNewTables').click(function() {
             clean_fields();
-            $('#tablesModaTable').modal('show');
+            $('#tablesModalTable').modal('show');
         });
 
         $('#tablesSubmitForm').click(function(e) {
@@ -177,13 +177,17 @@
                 },
                 success: function(data) {
                     //console.log("Data: "+ data.error)
-                    if ($.isEmptyObject(data.validation_error) && $.isEmptyObject(data
-                                .submit_store_error) && $.isEmptyObject(data
-                                .cancel_store_trait_error)) {
+                    if ($.isEmptyObject(data.validation_error) &&
+                        $.isEmptyObject(data.submit_store_error)) {
                         //alert(data.success);
                         $('#tablesFormTable').trigger("reset");
-                        $('#tablesModaTable').modal('hide');
-
+                        $('#tablesModalTable').modal('hide');
+                        var Reset = (data.success);
+                        if (Reset !== '') {
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 3500);
+                        }
                         clean_fields();
                         toastr.success(data.submit_store_success, '', {
                             "positionClass": "toast-top-right",
@@ -201,12 +205,6 @@
                                 "positionClass": "toast-top-right",
                                 "timeOut": "3000",
                             });
-                        //Si el cancel trait está activado inhabilitando la edición
-                        }else if (!$.isEmptyObject(data.cancel_store_trait_error)) {
-                                toastr.error(data.cancel_store_trait_error, '', {
-                                    "positionClass": "toast-top-right",
-                                    "timeOut": "3000",
-                                });
                         } else {
                             toastr.error(
                                 'Uncaught error, please contact with administrators',

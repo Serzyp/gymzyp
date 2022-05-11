@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\adminControls;
 
 use App\Models\Table;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class TableController extends Controller
+class UserAdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,6 +22,7 @@ class TableController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('auth.admin');
     }
 
     /**
@@ -30,9 +32,9 @@ class TableController extends Controller
      */
     public function index()
     {
-        $myTables = Table::orderBy('updated_at')->paginate(6);
+        // $myTables = Table::orderBy('updated_at')->paginate(6);
 
-        return view('tables.myTables',compact('myTables'));
+        // return view('tables.myTables',compact('myTables'));
     }
 
     public function store(Request $request){
@@ -71,6 +73,8 @@ class TableController extends Controller
              */
             $data = $validator->validated();
 
+            //añado valor extra
+            //$data['codModel'] = $newModelCar->codModel;
             try {
                 DB::beginTransaction();
                 $data['user_id'] = $idUser;
@@ -80,6 +84,12 @@ class TableController extends Controller
                 $table = Table::updateOrCreate(
                     ['id' => $request->id],$data
                 );
+                $cancel_store_trait = in_array(CancelStoring::class, class_uses(new table));
+                //El trait deshabilita la edición
+                if ($cancel_store_trait == true) {
+                    DB::rollback();
+                    return response()->json(['cancel_store_trait_error' => 'This external module has disabled any changes']);
+                }
                 //updateOrCreate hace un update
                 if (!$table->wasRecentlyCreated && $table->wasChanged()) {
 
@@ -103,7 +113,6 @@ class TableController extends Controller
             catch (\Exception $myException) {
                 DB::rollback();
 
-                return json_encode($myException);
             }
 
         }

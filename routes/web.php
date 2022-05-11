@@ -79,7 +79,9 @@ Route::get('/myTables/image/{filename}', [App\Http\Controllers\TableController::
 //Vista de una tabla con los ejercicios y los dias
 Route::get('/table/exerciseDatatable/{cod}', [App\Http\Controllers\ExerciseController::class, 'exerciseDatatable'])->name('table.exerciseDatatable');
 Route::get('/myTable/{id}', [App\Http\Controllers\ExerciseController::class, 'index'])->name('table.exercises');
-
+Route::post('/table/save', [App\Http\Controllers\ExerciseController::class, 'store'])->name('exercises.store');
+Route::get('/table/edit/{id}', [App\Http\Controllers\ExerciseController::class, 'edit'])->name('exercises.edit');
+Route::delete('/table/destroy/{id}', [App\Http\Controllers\ExerciseController::class, 'destroy'])->name('exercises.destroy');
 
 
 

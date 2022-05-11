@@ -22,6 +22,7 @@ class CreateExerciseTable extends Migration
             $table->text('content');
             $table->integer('sets');
             $table->string('reps');
+            $table->timestamps();
         });
     }
 
