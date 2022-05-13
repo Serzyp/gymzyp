@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 
 
-
-
-
 class ExerciseController extends Controller
 {
     /**

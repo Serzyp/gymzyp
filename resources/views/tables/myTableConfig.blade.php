@@ -13,14 +13,14 @@
                 <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top" width='50px' alt="...">
             </div>
             <div class="actionBox text-center m-1">
-                <a class="edit btn btn-primary btn-sm editTable"  href="javascript:void(0)" ><i class="fas fa-pen fa-2x"></i></a>
+                <a class="edit btn btn-primary btn-sm" id="editTable" href="javascript:void(0)" ><i class="fas fa-pen fa-2x"></i></a>
 
                 <a href="javascript:void(0)"  class="btn btn-danger btn-sm deleteTable"><i class="fas fa-trash-alt fa-2x"></i></a>
             </div>
         </div>
         <div class="col-5 text-center">
             <h1>{{ $table->name }}</h1>
-            <p>{{ $table->description }}</p>
+            <p class="text-break">{{ $table->description }}</p>
         </div>
         <div class="col-3 text-center">
             <h1>User Details</h1>
@@ -126,6 +126,65 @@
         </div>
     </div>
 
+        <!-- Modal -->
+    <div class="modal fade" id="tablesModalTable" data-backdrop="static">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <!-- Modal header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalHeading">Edit table</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal body -->
+                <form id="tablesFormTable" enctype="multipart/form-data" method="POST" class="form-group">
+                    @csrf
+
+                    <div class="modal-body">
+                        <div class="form-group" hidden>
+                            <label>Id</label>
+                            <input type="text" class="form-control" id="id_table" name="id">
+                            <span class="text-danger error-text id_error"></span>
+                        </div>
+                        <div class="form-group" hidden>
+                            <label>IdUser</label>
+                            <input type="text" class="form-control" id="user_id" name="user_id">
+                            <span class="text-danger error-text user_id_error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Title">
+                            <span class="text-danger error-text name_error"></span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea name="description" id="description" class="form-control" cols="170" rows="5"></textarea>
+                                <span class="text-danger error-text description_error"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="image_path">{{ __('Imagen') }}</label>
+
+                                <div class="col-md-6">
+
+                                    <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path">
+                                </div>
+                                <span class="text-danger error-text image_path_error"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="tablesSubmitForm">Edit</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -448,6 +507,178 @@
             }
         });
 
+        //  BOTÓN PARA ABRIR TABLA  //
+
+        $('#editTable').click(function() {
+            clean_fields();
+            var id = "{{ $table->id }}";
+                var url = "{{ route('table.edit', ':id') }}";
+                url = url.replace(':id', id);
+
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: function(data) {
+                        console.log(data);
+                        $('#id_table').val(id).change();
+                        $('#user_id').val(data.table.user_id).change();
+                        $('#name').val(data.table.name);
+                        $('#description').val(data.table.description);
+
+
+                        $('#tablesModalTable').modal('show');
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                        toastr.error(
+                            'Not expected error!, please contact with administrators',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    }
+                });
+
+
+        });
+
+                // EDITAR UNA TABLA //
+
+        $('#tablesSubmitForm').click(function(e) {
+            /** Problemas con serialize y default form upload
+             *
+             * Si serializas los datos no se envían los del archivo adjunto.
+             * La solución es utilizar FormData, comento las líneas añadidas y modificadas.
+             *
+             **/
+            var that = $(this);
+            e.preventDefault();
+            var data = new FormData($("#tablesFormTable")[0]); //FormData
+            console.log(data);
+            $.ajax({
+                data: data,
+                url: "{{ route('table.store') }}",
+                type: "POST",
+                dataType: 'json', //Se mantiene esta línea porque es el formato que lee store
+                processData: false, //FormData
+                contentType: false, //FormData
+                beforeSend: function(data) {
+                    that.hide();
+                },
+                complete: function(data) {
+                    that.show();
+                },
+                success: function(data) {
+                    //console.log("Data: "+ data.error)
+                    if ($.isEmptyObject(data.validation_error)) {
+                        //alert(data.success);
+                        $('#tablesFormTable').trigger("reset");
+                        $('#tablesModalTable').modal('hide');
+
+                        var Reset = (data.success);
+                        if (Reset !== '') {
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 2000);
+                        }
+
+                        clean_fields();
+                        toastr.success(data.submit_store_success, '', {
+                            "positionClass": "toast-top-right",
+                            "timeOut": "3000",
+                        });
+                    } else {
+                        //Si falla la validación de campos
+                        if (!$.isEmptyObject(data.validation_error)) {
+                            printErrorMsg(data.validation_error);
+                        }
+                        //Si al guardar salta el catch (foreign key o cualquier exception sql)
+                        else if (!$.isEmptyObject(data.submit_store_error)) {
+                            printErrorMsg(data.validation_error);
+                            toastr.warning(data.submit_store_error, '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            });
+
+                        } else {
+                            toastr.error(
+                                'Uncaught error, please contact with administrators',
+                                '', {
+                                    "positionClass": "toast-top-right",
+                                    "timeOut": "3000",
+                                });
+                        }
+                    }
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                    toastr.error(
+                        'Not expected error!, please contact with administrators',
+                        '', {
+                            "positionClass": "toast-top-right",
+                            "timeOut": "3000",
+                        }
+                    );
+                }
+
+            });
+        });
+
+        //  ELIMINAR TABLA  //
+
+        $('body').on('click', '.deleteTable', function() {
+            var idTable = "{{ $table->id }}";
+            var confir = confirm("Are you sure you want to delete the record?");
+            if (confir == true) {
+                var url = "{{ route('table.destroy', ':id') }}";
+                url = url.replace(':id', idTable);
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    success: function(data) {
+                        if ($.isEmptyObject(data.submit_delete_error)) {
+
+                            var Reset = (data.success);
+                            if (Reset !== '') {
+                                setTimeout(function () {
+                                    window.location.href = '{{ url()->previous() }}';
+                                }, 2000);
+                            }
+                            toastr.info(data.submit_delete_success, '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            });
+                        } else {
+                            //Si al guardar salta el catch (foreign key o cualquier exception sql)
+                            if (!$.isEmptyObject(data.submit_delete_error)) {
+                                toastr.warning(data.submit_delete_error, '', {
+                                    "positionClass": "toast-top-right",
+                                    "timeOut": "3000",
+                                });
+                            } else {
+                                toastr.error(
+                                    'Uncaught error, please contact with administrators',
+                                    '', {
+                                        "positionClass": "toast-top-right",
+                                        "timeOut": "3000",
+                                    });
+                            }
+                        }
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                        toastr.error(
+                            'Not expected error!, please contact with administrators',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    }
+                });
+            }
+        });
 
     });
 

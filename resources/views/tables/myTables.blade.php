@@ -104,19 +104,6 @@
                         </div>
 
                     </div>
-
-                    {{-- <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="created_at">Fecha de creación</label>
-                            <input type="date" name="created_at" id="created_at" class="form-control">
-                            <span class="text-danger error-text created_at_error"></span>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="updated_at">Fecha de actualización</label>
-                            <input type="date" name="updated_at" id="updated_at" class="form-control">
-                            <span class="text-danger error-text updated_at_error"></span>
-                        </div>
-                    </div> --}}
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">

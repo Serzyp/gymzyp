@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\adminControls;
 
-use App\Models\Table;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -32,9 +33,9 @@ class UserAdminController extends Controller
      */
     public function index()
     {
-        // $myTables = Table::orderBy('updated_at')->paginate(6);
+        $userList = User::all();
 
-        // return view('tables.myTables',compact('myTables'));
+        return view('',compact('userList'));
     }
 
     public function store(Request $request){

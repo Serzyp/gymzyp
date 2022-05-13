@@ -366,21 +366,22 @@ return [
         'Datatables' => [
             'active' => false,
             'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
-                ],
+                // [
+                //     'type' => 'js',
+                //     'asset' => false,
+                //     'location' => '//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js',
+
+                // ],
+                // [
+                //     'type' => 'js',
+                //     'asset' => false,
+                //     'location' => '//cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js',
+                // ],
+                // [
+                //     'type' => 'css',
+                //     'asset' => false,
+                //     'location' => '//cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css',
+                // ],
             ],
         ],
         'Select2' => [

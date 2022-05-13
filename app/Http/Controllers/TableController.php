@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Table;
+use App\Models\Exercise;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -106,6 +107,33 @@ class TableController extends Controller
                 return json_encode($myException);
             }
 
+        }
+
+    }
+
+    public function edit($id){
+
+        if (request()->ajax()) {
+            return response()->json(
+                ['table' => Table::find($id)]
+            );
+        }
+    }
+
+    public function destroy($id){
+        try {
+            DB::beginTransaction();
+
+            Exercise::where('table_id',$id)->delete();
+
+            Table::findOrFail($id)->delete();
+
+            DB::commit();
+            return response()->json(['submit_delete_success' => 'Table deleted successfully.']);
+        } catch (\Exception $myException) {
+            DB::rollback();
+
+            return response()->json(['submit_delete_error' =>json_encode($myException)]);
         }
 
     }

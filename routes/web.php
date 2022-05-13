@@ -72,7 +72,7 @@ Route::get('/google-callback', function () {
 
 //Vista para las tablas
 
-Route::resource('/myTables',App\Http\Controllers\TableController::class)->names('table');
+Route::resource('myTables',App\Http\Controllers\TableController::class)->names('table');
 Route::get('/myTables/image/{filename}', [App\Http\Controllers\TableController::class, 'getImage'])->name('table.image');
 
 
