@@ -85,12 +85,7 @@ class UserAdminController extends Controller
                 $table = Table::updateOrCreate(
                     ['id' => $request->id],$data
                 );
-                $cancel_store_trait = in_array(CancelStoring::class, class_uses(new table));
-                //El trait deshabilita la edición
-                if ($cancel_store_trait == true) {
-                    DB::rollback();
-                    return response()->json(['cancel_store_trait_error' => 'This external module has disabled any changes']);
-                }
+
                 //updateOrCreate hace un update
                 if (!$table->wasRecentlyCreated && $table->wasChanged()) {
 

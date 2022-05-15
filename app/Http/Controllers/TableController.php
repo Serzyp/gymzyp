@@ -7,6 +7,7 @@ use App\Models\Exercise;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -85,26 +86,38 @@ class TableController extends Controller
                 if (!$table->wasRecentlyCreated && $table->wasChanged()) {
 
                     DB::commit();
-                    return response()->json(['submit_store_success' => 'Table updated successfully']);
+                    if (App::isLocale('en')) {
+                        return response()->json(['submit_store_success' => 'Table updated successfully']);
+                    }else{
+                        return response()->json(['submit_store_success' => 'Tabla actualizada correctamente']);
+                    }
                 }
                 //updateOrCreate hace update sin realizar cambios
                 else if (!$table->wasRecentlyCreated && !$table->wasChanged()) {
 
                     DB::commit();
-                    return response()->json(['submit_store_success' => 'Table not changed']);
-                    //return response()->json(['cancel_store_trait_error' => 'This external module has disabled any changes']);
+                    if (App::isLocale('en')) {
+                        return response()->json(['submit_store_success' => 'Table not changed']);
+                    }else{
+                        return response()->json(['submit_store_success' => 'Tabla no actualizada']);
+                    }
+
                 }
                 //updateOrCreate hace create
                 else if ($table->wasRecentlyCreated) {
                     DB::commit();
-                    return response()->json(['submit_store_success' => 'Table created successfully']);
+                    if (App::isLocale('en')) {
+                        return response()->json(['submit_store_success' => 'Table created successfully']);
+                    }else{
+                        return response()->json(['submit_store_success' => 'Tabla creada correctamente']);
+                    }
                 }
             }
             //Error sentencia SQL
             catch (\Exception $myException) {
                 DB::rollback();
 
-                return json_encode($myException);
+                return response()->json(['submit_store_error' =>json_encode($myException)]);
             }
 
         }
@@ -129,7 +142,11 @@ class TableController extends Controller
             Table::findOrFail($id)->delete();
 
             DB::commit();
-            return response()->json(['submit_delete_success' => 'Table deleted successfully.']);
+            if (App::isLocale('en')) {
+                return response()->json(['submit_delete_success' => 'Table deleted successfully']);
+            }else{
+                return response()->json(['submit_delete_success' => 'Tabla eliminada correctamente']);
+            }
         } catch (\Exception $myException) {
             DB::rollback();
 

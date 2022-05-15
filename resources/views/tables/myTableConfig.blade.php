@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
     <div class="row m-2">
-        <div class="col-3">
+        <div class="col-12 col-md-3 ">
             <div class="imageExercises">
                 <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top" width='50px' alt="...">
             </div>
@@ -18,17 +18,17 @@
                 <a href="javascript:void(0)"  class="btn btn-danger btn-sm deleteTable"><i class="fas fa-trash-alt fa-2x"></i></a>
             </div>
         </div>
-        <div class="col-5 text-center">
-            <h1>{{ $table->name }}</h1>
+        <div class="col-12 col-md-5 text-center">
+            <h1 class="text-break">{{ $table->name }}</h1>
             <p class="text-break">{{ $table->description }}</p>
         </div>
-        <div class="col-3 text-center">
-            <h1>User Details</h1>
+        <div class="col-12 col-md-3 text-center">
+            <h1>{{ __('User Details') }}</h1>
             <h3>{{ $table->user->name }}</h3>
             <p>{{ $table->user->email }}</p>
         </div>
-        <div class="col-1 text-center">
-            <a class="btn btn-primary btn-lg active" href="{{ url()->previous() }}">{{ __('Back') }}</a>
+        <div class="col-12 col-md-1 text-center">
+            <a class="btn btn-primary btn-lg active" href="{{ route('table.index') }}">{{ __('Back') }}</a>
         </div>
     </div>
 
@@ -41,7 +41,7 @@
                         @method('POST')
                         <div class="row mt-2">
                             <div class="col-md-3 col-sm-12">
-                                <button type="submit" class="btn btn-success">Excel export</button>
+                                <button type="submit" class="btn btn-success">{{ __('Excel export') }}</button>
                             </div>
                         </div>
                     </form>
@@ -70,7 +70,7 @@
             <div class="modal-content">
                 <!-- Modal header -->
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modalHeadingExercise">Add exercise</h4>
+                    <h4 class="modal-title" id="modalHeadingExercise">{{ __('Add Exercise') }}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- Modal body -->
@@ -89,23 +89,24 @@
                             <span class="text-danger error-text table_id_error"></span>
                         </div>
                         <div class="form-group">
-                            <label>Exercise name: </label>
+                            <label>{{ __('Exercise name') }}: </label>
                             <input type="text" class="form-control" id="content" name="content" placeholder="Press Bench">
                             <span class="text-danger error-text content_error"></span>
                         </div>
                         <div class="form-group">
-                            <label>Sets:</label>
+                            <label>{{ __('Sets') }}:</label>
                             <input type="number" class="form-control" id="sets" name="sets" min="1" placeholder="3">
                             <span class="text-danger error-text sets_error"></span>
                         </div>
                         <div class="form-group">
-                            <label>Reps:</label>
+                            {{-- Posibilidades de ser traducido en un futuro --}}
+                            <label>{{ __('Reps') }}:</label>
                             <input type="text" class="form-control" id="reps" name="reps" placeholder="15 or 15-10-5 (Example)">
                             <span class="text-danger error-text reps_error"></span>
                         </div>
 
                         <div class="form-group">
-                            <label>Day</label>
+                            <label>{{ __('Day') }}</label>
                             <select name="day_id" id="day_id" class="form-select">
                                 @foreach ($days as $day)
                                     <option value="{{ $day->id }}">{{ $day->day." - ".$day->moment }}</option>
@@ -117,8 +118,8 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" id="exercisesSubmitForm">Add</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success" id="exercisesSubmitForm">{{ __('Add') }}</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{ __('Close') }}</button>
 
                     </div>
                 </form>
@@ -132,7 +133,7 @@
             <div class="modal-content">
                 <!-- Modal header -->
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modalHeading">Edit table</h4>
+                    <h4 class="modal-title" id="modalHeading">{{ __('Edit table') }}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- Modal body -->
@@ -151,13 +152,13 @@
                             <span class="text-danger error-text user_id_error"></span>
                         </div>
                         <div class="form-group">
-                            <label>Title</label>
+                            <label>{{ __('Title') }}</label>
                             <input type="text" name="name" id="name" class="form-control" placeholder="Title">
                             <span class="text-danger error-text name_error"></span>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>{{ __('Description') }}</label>
                                 <textarea name="description" id="description" class="form-control" cols="170" rows="5"></textarea>
                                 <span class="text-danger error-text description_error"></span>
                             </div>
@@ -177,8 +178,8 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" id="tablesSubmitForm">Edit</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success" id="tablesSubmitForm">{{ __('Edit') }}</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{ __('Close') }}</button>
 
                     </div>
                 </form>
@@ -202,6 +203,30 @@
         });
         var url = '{{ route('table.exerciseDatatable',$codTable) }}';
         var datatable = $('#datatable').DataTable({
+            @if (App::isLocale('es'))
+
+
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            @endif
             ajax: url,
             // colReorder: true,
             autoWidth: false,
@@ -214,17 +239,14 @@
             processing: true,
             responsive: true,
             bLengthChange: false,
-            lengthMenu: [
-                [5, 10, 20],
-                ['5 rows', '10 rows', '20 rows']
-            ],
             dom: 'Bfrtip',
+
             buttons: [
-                // 'pdf',
-                //'copy',
-                'colvis',
-                'pageLength',
-                // 'excel',
+            //     // 'pdf',
+            //     //'copy',
+            //     'colvis',
+            //     'pageLength',
+            //     // 'excel',
             ],
 
             columns: [
@@ -238,19 +260,19 @@
                     data: 'content',
                     name: 'content',
                     sClass: 'text-center',
-                    title: 'Content'
+                    title: '{{ __("Exercise name") }}'
                 },
                 {
                     data: 'sets',
                     name: 'sets',
                     sClass: 'text-center',
-                    title: 'Sets'
+                    title: '{{ __("Sets") }}'
                 },
                 {
                     data: 'reps',
                     name: 'reps',
                     sClass: 'text-center',
-                    title: 'Reps'
+                    title: '{{ __("Reps") }}'
                 },
                 {
                     data: 'Actions',
@@ -258,7 +280,7 @@
                     orderable: false,
                     serachable: false,
                     sClass: 'text-center',
-                    title: '&nbsp;&nbsp;&nbsp;&nbsp;Actions&nbsp;&nbsp;&nbsp;'
+                    title: '&nbsp;&nbsp;&nbsp;&nbsp;{{ __("Actions") }}&nbsp;&nbsp;&nbsp;'
                 },
 
 
@@ -383,24 +405,46 @@
                             });
 
                         } else {
-                            toastr.error(
-                                'Uncaught error, please contact with administrators',
-                                '', {
-                                    "positionClass": "toast-top-right",
-                                    "timeOut": "3000",
-                                });
+                            @if (App::isLocale('es'))
+                                toastr.error(
+                                    'Error no encontrado, porfavor contacte con los administradores',
+                                    '', {
+                                        "positionClass": "toast-top-right",
+                                        "timeOut": "3000",
+                                    }
+                                );
+                            @else
+                                toastr.error(
+                                    'Uncaught error, please contact with administrators',
+                                    '', {
+                                        "positionClass": "toast-top-right",
+                                        "timeOut": "3000",
+                                    }
+                                );
+
+                            @endif
                         }
                     }
                 },
                 error: function(data) {
                     console.log('Error:', data);
-                    toastr.error(
-                        'Not expected error!, please contact with administrators',
-                        '', {
-                            "positionClass": "toast-top-right",
-                            "timeOut": "3000",
-                        }
-                    );
+                    @if (App::isLocale('es'))
+                        toastr.error(
+                            'Error no esperado, porfavor contacte con los administradores',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    @else
+                        toastr.error(
+                            'Not expected error!, please contact with administrators',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    @endif
                 }
 
             });
@@ -444,13 +488,23 @@
                 },
                 error: function(data) {
                     console.log('Error:', data);
-                    toastr.error(
-                        'Not expected error!, please contact with administrators',
-                        '', {
-                            "positionClass": "toast-top-right",
-                            "timeOut": "3000",
-                        }
-                    );
+                    @if (App::isLocale('es'))
+                        toastr.error(
+                            'Error no esperado, porfavor contacte con los administradores',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    @else
+                        toastr.error(
+                            'Not expected error!, please contact with administrators',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    @endif
                 }
             });
             $('#exerciseModal').modal('show');
@@ -484,24 +538,46 @@
                                     "timeOut": "3000",
                                 });
                             } else {
-                                toastr.error(
-                                    'Uncaught error, please contact with administrators',
-                                    '', {
-                                        "positionClass": "toast-top-right",
-                                        "timeOut": "3000",
-                                    });
+                                @if (App::isLocale('es'))
+                                    toastr.error(
+                                        'Error no encontrado, porfavor contacte con los administradores',
+                                        '', {
+                                            "positionClass": "toast-top-right",
+                                            "timeOut": "3000",
+                                        }
+                                    );
+                                @else
+                                    toastr.error(
+                                        'Uncaught error, please contact with administrators',
+                                        '', {
+                                            "positionClass": "toast-top-right",
+                                            "timeOut": "3000",
+                                        }
+                                    );
+
+                                @endif
                             }
                         }
                     },
                     error: function(data) {
                         console.log('Error:', data);
-                        toastr.error(
-                            'Not expected error!, please contact with administrators',
-                            '', {
-                                "positionClass": "toast-top-right",
-                                "timeOut": "3000",
-                            }
-                        );
+                        @if (App::isLocale('es'))
+                            toastr.error(
+                                'Error no esperado, porfavor contacte con los administradores',
+                                '', {
+                                    "positionClass": "toast-top-right",
+                                    "timeOut": "3000",
+                                }
+                            );
+                        @else
+                            toastr.error(
+                                'Not expected error!, please contact with administrators',
+                                '', {
+                                    "positionClass": "toast-top-right",
+                                    "timeOut": "3000",
+                                }
+                            );
+                        @endif
                     }
                 });
             }
@@ -530,13 +606,23 @@
                     },
                     error: function(data) {
                         console.log('Error:', data);
-                        toastr.error(
-                            'Not expected error!, please contact with administrators',
-                            '', {
-                                "positionClass": "toast-top-right",
-                                "timeOut": "3000",
-                            }
-                        );
+                        @if (App::isLocale('es'))
+                            toastr.error(
+                                'Error no esperado, porfavor contacte con los administradores',
+                                '', {
+                                    "positionClass": "toast-top-right",
+                                    "timeOut": "3000",
+                                }
+                            );
+                        @else
+                            toastr.error(
+                                'Not expected error!, please contact with administrators',
+                                '', {
+                                    "positionClass": "toast-top-right",
+                                    "timeOut": "3000",
+                                }
+                            );
+                        @endif
                     }
                 });
 
@@ -602,24 +688,46 @@
                             });
 
                         } else {
-                            toastr.error(
-                                'Uncaught error, please contact with administrators',
-                                '', {
-                                    "positionClass": "toast-top-right",
-                                    "timeOut": "3000",
-                                });
+                            @if (App::isLocale('es'))
+                                toastr.error(
+                                    'Error no encontrado, porfavor contacte con los administradores',
+                                    '', {
+                                        "positionClass": "toast-top-right",
+                                        "timeOut": "3000",
+                                    }
+                                );
+                            @else
+                                toastr.error(
+                                    'Uncaught error, please contact with administrators',
+                                    '', {
+                                        "positionClass": "toast-top-right",
+                                        "timeOut": "3000",
+                                    }
+                                );
+
+                            @endif
                         }
                     }
                 },
                 error: function(data) {
                     console.log('Error:', data);
-                    toastr.error(
-                        'Not expected error!, please contact with administrators',
-                        '', {
-                            "positionClass": "toast-top-right",
-                            "timeOut": "3000",
-                        }
-                    );
+                    @if (App::isLocale('es'))
+                        toastr.error(
+                            'Error no esperado, porfavor contacte con los administradores',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    @else
+                        toastr.error(
+                            'Not expected error!, please contact with administrators',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    @endif
                 }
 
             });
@@ -657,24 +765,46 @@
                                     "timeOut": "3000",
                                 });
                             } else {
-                                toastr.error(
-                                    'Uncaught error, please contact with administrators',
-                                    '', {
-                                        "positionClass": "toast-top-right",
-                                        "timeOut": "3000",
-                                    });
+                                @if (App::isLocale('es'))
+                                    toastr.error(
+                                        'Error no encontrado, porfavor contacte con los administradores',
+                                        '', {
+                                            "positionClass": "toast-top-right",
+                                            "timeOut": "3000",
+                                        }
+                                    );
+                                @else
+                                    toastr.error(
+                                        'Uncaught error, please contact with administrators',
+                                        '', {
+                                            "positionClass": "toast-top-right",
+                                            "timeOut": "3000",
+                                        }
+                                    );
+
+                                @endif
                             }
                         }
                     },
                     error: function(data) {
                         console.log('Error:', data);
-                        toastr.error(
-                            'Not expected error!, please contact with administrators',
-                            '', {
-                                "positionClass": "toast-top-right",
-                                "timeOut": "3000",
-                            }
-                        );
+                        @if (App::isLocale('es'))
+                            toastr.error(
+                                'Error no esperado, porfavor contacte con los administradores',
+                                '', {
+                                    "positionClass": "toast-top-right",
+                                    "timeOut": "3000",
+                                }
+                            );
+                        @else
+                            toastr.error(
+                                'Not expected error!, please contact with administrators',
+                                '', {
+                                    "positionClass": "toast-top-right",
+                                    "timeOut": "3000",
+                                }
+                            );
+                        @endif
                     }
                 });
             }

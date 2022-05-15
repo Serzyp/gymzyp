@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card mb-3">
-                <a href="javascript:void(0)" class="text-center text-decoration-none" id="tableNewTables" style="color: grey"><h2 class="p-3 mb-0"><i class="fa-regular fa-square-plus"></i> {{ __('Añadir una nueva tabla vacia') }}</h2></a>
+                <a href="javascript:void(0)" class="text-center text-decoration-none" id="tableNewTables" style="color: grey"><h2 class="p-3 mb-0"><i class="fa-regular fa-square-plus"></i> {{ __('Add new table empty') }}</h2></a>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $myTable->name }}</h5>
                         <p class="card-text">{{ substr($myTable->description,0,90);}}... </p>
-                        <p class="card-text"><a href="{{ route('table.exercises', $myTable->id) }}" class="btn btn-primary">{{ __('Ver más') }}</a> <small class="text-muted">Last updated 3 mins ago</small></p>
+                        <p class="card-text"><a href="{{ route('table.exercises', $myTable->id) }}" class="btn btn-primary">{{ __('Show more') }}</a> <small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
         <div class="modal-content">
             <!-- Modal header -->
             <div class="modal-header">
-                <h4 class="modal-title" id="modalHeading">New table</h4>
+                <h4 class="modal-title" id="modalHeading">{{ __('New table') }}</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Modal body -->
@@ -81,13 +81,13 @@
                         <span class="text-danger error-text user_id_error"></span>
                     </div>
                     <div class="form-group">
-                        <label>Title</label>
+                        <label>{{ __('Title') }}</label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="Title">
                         <span class="text-danger error-text name_error"></span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Description</label>
+                            <label>{{ __('Description') }}</label>
                             <textarea name="description" id="description" class="form-control" cols="170" rows="5"></textarea>
                             <span class="text-danger error-text description_error"></span>
                         </div>
@@ -107,8 +107,8 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" id="tablesSubmitForm">Add</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" id="tablesSubmitForm">{{ __('Add') }}</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{{ __('Close') }}</button>
 
                 </div>
             </form>
@@ -193,24 +193,47 @@
                                 "timeOut": "3000",
                             });
                         } else {
-                            toastr.error(
-                                'Uncaught error, please contact with administrators',
-                                '', {
-                                    "positionClass": "toast-top-right",
-                                    "timeOut": "3000",
-                                });
+                            @if (App::isLocale('es'))
+                                toastr.error(
+                                    'Error no encontrado, porfavor contacte con los administradores',
+                                    '', {
+                                        "positionClass": "toast-top-right",
+                                        "timeOut": "3000",
+                                    }
+                                );
+                            @else
+                                toastr.error(
+                                    'Uncaught error, please contact with administrators',
+                                    '', {
+                                        "positionClass": "toast-top-right",
+                                        "timeOut": "3000",
+                                    }
+                                );
+
+                            @endif
                         }
                     }
                 },
                 error: function(data) {
                     console.log('Error:', data);
-                    toastr.error(
-                        'Not expected error!, please contact with administrators',
-                        '', {
-                            "positionClass": "toast-top-right",
-                            "timeOut": "3000",
-                        }
-                    );
+                    @if (App::isLocale('es'))
+                        toastr.error(
+                            'Error no esperado, porfavor contacte con los administradores',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    @else
+                        toastr.error(
+                            'Not expected error!, please contact with administrators',
+                            '', {
+                                "positionClass": "toast-top-right",
+                                "timeOut": "3000",
+                            }
+                        );
+                    @endif
+
                 }
 
             });

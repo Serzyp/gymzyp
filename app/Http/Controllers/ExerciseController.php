@@ -8,6 +8,7 @@ use App\Models\Exercise;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -111,18 +112,30 @@ class ExerciseController extends Controller
                 if (!$exercise->wasRecentlyCreated && $exercise->wasChanged()) {
 
                     DB::commit();
-                    return response()->json(['submit_store_success' => 'Exercise updated successfully']);
+                    if (App::isLocale('en')) {
+                        return response()->json(['submit_store_success' => 'Exercise updated successfully']);
+                    }else{
+                        return response()->json(['submit_store_success' => 'Ejercicio actualizado correctamente']);
+                    }
                 }
                 //updateOrCreate hace update sin realizar cambios
                 else if (!$exercise->wasRecentlyCreated && !$exercise->wasChanged()) {
 
                     DB::commit();
-                    return response()->json(['submit_store_success' => 'Exercise not changed']);
+                    if (App::isLocale('en')) {
+                        return response()->json(['submit_store_success' => 'Exercise not changed']);
+                    }else{
+                        return response()->json(['submit_store_success' => 'Ejercicio no actualizado']);
+                    }
                 }
                 //updateOrCreate hace create
                 else if ($exercise->wasRecentlyCreated) {
                     DB::commit();
-                    return response()->json(['submit_store_success' => 'Exercise created successfully']);
+                    if (App::isLocale('en')) {
+                        return response()->json(['submit_store_success' => 'Exercise created successfully']);
+                    }else{
+                        return response()->json(['submit_store_success' => 'Ejercicio creado correctamente']);
+                    }
                 }
             }
             //Error sentencia SQL
@@ -150,7 +163,11 @@ class ExerciseController extends Controller
             Exercise::findOrFail($id)->delete();
 
             DB::commit();
-            return response()->json(['submit_delete_success' => 'Exercise deleted successfully.']);
+            if (App::isLocale('en')) {
+                return response()->json(['submit_delete_success' => 'Exercise deleted successfully']);
+            }else{
+                return response()->json(['submit_delete_success' => 'Ejercicio eliminado correctamente']);
+            }
         } catch (\Exception $myException) {
             DB::rollback();
 
