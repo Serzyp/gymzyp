@@ -13,13 +13,14 @@ class CreateTableTable extends Migration
      */
     public function up()
     {
-        Schema::create('table', function (Blueprint $table) {
+        Schema::create('table_exercises', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
             $table->string('image_path');
             $table->text('description');
+            $table->boolean('paid_mode')->default(false);
             $table->timestamps();
         });
     }

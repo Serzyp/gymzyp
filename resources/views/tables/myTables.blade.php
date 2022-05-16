@@ -14,37 +14,68 @@
         </div>
 
     </div>
+    <script>
+
+        function refresh_likes(id){
+            var url = "{{ route('like.reload', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(response){
+                    $(".likeCount_"+id).html(response);
+                },
+                complete: function(){
+                    setTimeout( refresh_likes(id), 1000);
+                }
+            });
+
+
+        }
+    </script>
     <div class="row justify-content-center">
         @foreach ($myTables as $myTable)
-            <div class="col-md-5 col-sd-8">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <img src="{{ route('table.image',['filename' => $myTable->image_path]) }}" class="img-fluid rounded-end p-2 card-img-top" alt="...">
+            <div class="col-8">
+                <div class="card mb-3" >
+                    <div class="row ">
+                        <div class="col-md-4 align-middle">
+                            <img src="{{ route('table.image',['filename' => $myTable->image_path]) }}" class="img-fluid rounded-end p-2 card-img-top" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $myTable->name }}</h5>
+                                <p class="card-text">{{ substr($myTable->description,0,130);}}... </p>
+                                <p class="card-text">
+                                    <div id="like-{{ $myTable->id }}">
+                                        <a href="{{ route('table.exercises', $myTable->id) }}" class="btn btn-primary">{{ __('Show more') }}</a>
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $myTable->name }}</h5>
-                        <p class="card-text">{{ substr($myTable->description,0,90);}}... </p>
-                        <p class="card-text"><a href="{{ route('table.exercises', $myTable->id) }}" class="btn btn-primary">{{ __('Show more') }}</a> <small class="text-muted">Last updated 3 mins ago</small></p>
+                                        {{-- Averiguar cuantos likes tiene la tabla y si el usuaria que esta viendo la pagina ha dado o no like --}}
+                                        {{ $userlike = false; }}
+                                        @foreach ($myTable->likes as $like)
+                                            @if ($like->user->id == Auth::user()->id)
+                                                <?php $userlike = true; ?>
+                                            @endif
+                                        @endforeach
+
+                                        @if ($userlike)
+                                            <a class="btn-dislike btn btn-danger" data-id="{{ $myTable->id }}">
+                                            <i class="ico{{ $myTable->id }} fa-solid fa-heart"></i>
+                                        @else
+                                            <a class="btn-like btn btn-danger" data-id="{{ $myTable->id }}">
+                                            <i class="ico{{ $myTable->id }} fa-regular fa-heart"></i>
+                                        @endif
+                                        | <span class="likeCount_{{ $myTable->id }}"></span>
+                                        </a>
+                                        <script>refresh_likes({{ $myTable->id }});</script>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         @endforeach
-        {{-- <div class="col-md-5">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                <div class="col-md-4 align-middle">
-                    <img src="{{ asset('img/PreTablasGymzyp.png') }}" class="img-fluid rounded-end p-1" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting.This content is a little bit longer... </p>
-                    <p class="card-text"><a href="#" class="btn btn-primary">Go somewhere</a> <small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div> --}}
+
 
     </div>
     <div class="row mt-4">
@@ -250,6 +281,71 @@
         function resetErrorMsg() {
             $('.error-text').text('');
         }
+
+        // Botón de like
+        function like(){
+            $('.btn-like').unbind('click').click(function(){
+                console.log('like');
+                $(this).addClass('btn-dislike').removeClass('btn-like');
+
+                var id = $(this).data('id');
+                console.log(id);
+                var url = "{{ route('like.save', ':table_id') }}";
+                    url = url.replace(':table_id', id);
+
+                var classr = ".ico"+id;
+                console.log(classr);
+                $(classr).addClass('fa-solid').removeClass('fa-regular');
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response){
+                        if(response.like){
+                            console.log('Has dado like a la tabla');
+
+                            $("#like").load(" #like-"+id);
+                        }else{
+                            console.log('Error al dar like');
+                        }
+                    }
+                });
+                dislike();
+            });
+        }
+        like();
+
+        // Botón de dislike
+        function dislike(){
+            $('.btn-dislike').unbind('click').click(function(){
+                $(this).addClass('btn-like').removeClass('btn-dislike');
+
+                var id = $(this).data('id');
+                console.log(id);
+                var url = "{{ route('like.delete', ':table_id') }}";
+                    url = url.replace(':table_id', id);
+                    var classr = ".ico"+id;
+                console.log(classr);
+                $(classr).addClass('fa-regular').removeClass('fa-solid');
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response){
+                        if(response.like){
+                            console.log('Has dado dislike a la tabla');
+                            $("#like").load(" #like-"+id);
+                        }else{
+                            console.log('Error al dar dislike');
+                        }
+                    }
+                });
+
+                like();
+            });
+        }
+	    dislike();
+
+
+
     });
 </script>
 @endsection

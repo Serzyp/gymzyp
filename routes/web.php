@@ -84,5 +84,13 @@ Route::get('/table/edit/{id}', [App\Http\Controllers\ExerciseController::class, 
 Route::delete('/table/destroy/{id}', [App\Http\Controllers\ExerciseController::class, 'destroy'])->name('exercises.destroy');
 
 
+//Sistema de likes
+
+Route::get('/like/{table_id}', [App\Http\Controllers\LikeController::class,'like'])->name('like.save');
+Route::get('/dislike/{table_id}', [App\Http\Controllers\LikeController::class,'dislike'])->name('like.delete');
+
+Route::get('/reload/{id}', [App\Http\Controllers\LikeController::class,'reload'])->name('like.reload');
+
+
 
 

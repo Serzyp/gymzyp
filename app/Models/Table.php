@@ -11,7 +11,7 @@ class Table extends Model
 
 
     protected $connection = 'mysql';
-    protected $table = 'table';
+    protected $table = 'table_exercises';
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
 
