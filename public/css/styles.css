@@ -48,3 +48,17 @@ form .avatar{
     width: 100%;
     height: 100%;
 }
+
+
+
+
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+
+.h-3 {
+    height: 3rem;
+}
+.w-3 {
+    width: 3rem;
+}
