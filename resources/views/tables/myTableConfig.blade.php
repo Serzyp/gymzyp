@@ -63,6 +63,53 @@
 
         </div>
     </div>
+    <br>
+<!-- ZONA DE COMENTARIOS -->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title text-center">
+                    {{ __('Comments') }}
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="comment-block">
+                    <div class="d-flex justify-content-center">
+                    <a class="btn fs-2 mx-4 d-flex justify-content-center" href="#">
+                        <img class="comment-profile" alt="Profile image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                    - Willy</a>
+                    </div>
+
+                    <div class="comment-body mt-4">
+
+                        <p>consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="card-body">
+                <form action="{{ route('comment.save') }}" method="post">
+                    @csrf
+                    <textarea class="form-control" rows="2" placeholder="What are you thinking?"></textarea>
+                    @if($errors->has('content'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('content') }}</strong>
+                        </span>
+                    @endif
+                    <div class="mt-2 clearfix">
+                    <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-pencil fa-fw"></i> Share</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
         <!-- Modal DAY Y EXERCISE ADD-->
     <div class="modal fade" id="exerciseModal" data-backdrop="static">

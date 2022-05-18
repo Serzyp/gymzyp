@@ -32,7 +32,7 @@ class TableController extends Controller
      */
     public function index()
     {
-        $myTables = Table::orderBy('updated_at')->paginate(6);
+        $myTables = Table::where('user_id','=',auth()->user()->id)->orderBy('updated_at','desc')->paginate(6);
 
         return view('tables.myTables',compact('myTables'));
     }

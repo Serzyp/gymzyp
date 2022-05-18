@@ -88,9 +88,11 @@ Route::delete('/table/destroy/{id}', [App\Http\Controllers\ExerciseController::c
 
 Route::get('/like/{table_id}', [App\Http\Controllers\LikeController::class,'like'])->name('like.save');
 Route::get('/dislike/{table_id}', [App\Http\Controllers\LikeController::class,'dislike'])->name('like.delete');
-
 Route::get('/reload/{id}', [App\Http\Controllers\LikeController::class,'reload'])->name('like.reload');
 
+//Sistema de comentarios
 
+Route::post('/comment/save', [App\Http\Controllers\CommentController::class, 'save'])->name('comment.save');
+Route::get('/comment/delete/{id}', [App\Http\Controllers\CommentController::class, 'delete'])->name('comment.delete');
 
 

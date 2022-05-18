@@ -129,7 +129,7 @@
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Index') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('table.index') }}">{{ __('My Tables') }}</a>
+                                <a class="nav-link" href="{{ route('table.index') }}">{{ __('My tables') }}</a>
                             </li>
                             @if (Auth::user()->role == 'admin')
 
@@ -162,7 +162,7 @@
                                         {{ __('My profile') }}
                                     </a> --}}
                                     <a class="dropdown-item" href="{{ route('config'); }}">
-                                        {{ __('Config') }}
+                                        {{ __('Configuration') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
