@@ -91,6 +91,10 @@
     <script type="text/javascript" src="https://cdn.datatables.net/staterestore/1.1.0/js/stateRestore.bootstrap5.min.js"></script>
 
 
+    {{-- PAYPAL --}}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT_ID') }}&currency=EUR"></script>
+
+
 </head>
 <body>
     <div id="app">

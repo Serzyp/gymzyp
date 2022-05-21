@@ -73,29 +73,36 @@
                 </h5>
             </div>
             <div class="card-body">
+
+                @foreach ($table->comments as $comment)
                 <div class="comment-block">
                     <div class="d-flex justify-content-center">
                     <a class="btn fs-2 mx-4 d-flex justify-content-center" href="#">
-                        <img class="comment-profile" alt="Profile image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                    - Willy</a>
+                        <img class="comment-profile" alt="Profile image" src="{{ route('user.avatar',['filename' => $comment->user->image]) }}">
+                    - {{ $comment->user->nick }}</a>
                     </div>
 
                     <div class="comment-body mt-4">
 
-                        <p>consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                        <p>{{ $comment->content }}</p>
 
                         <div class="btn-group">
-                            <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa-solid fa-trash-can"></i></a>
+                            {{-- <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa-solid fa-pen-to-square"></i></a> --}}
+                            @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+                                <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa-solid fa-trash-can"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
             <hr>
             <div class="card-body">
                 <form action="{{ route('comment.save') }}" method="post">
                     @csrf
-                    <textarea class="form-control" rows="2" placeholder="What are you thinking?"></textarea>
+
+                    <input type="hidden" name="table_id" value="{{ $table->id }}" />
+                    <textarea class="form-control" rows="2" {{ $errors->has('content') ? 'is-invalid' : '' }}" name="content"></textarea>
                     @if($errors->has('content'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('content') }}</strong>

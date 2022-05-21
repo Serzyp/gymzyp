@@ -22,6 +22,7 @@ class CommentController extends Controller
 
     public function save(Request $request)
     {
+
    		// Validación
 		$validate = $this->validate($request, [
 			'table_id' => 'integer|required',

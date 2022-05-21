@@ -21,7 +21,7 @@
                     <div role="button" class="p-1 row border border-secondary rounded barTable">
 
                         <div class="col-2">
-                            <img alt="Gafollas" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-3 w-3" />
+                            <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
                         </div>
 
                         <div class="col-5 d-flex justify-content-center align-items-center">
@@ -67,7 +67,7 @@
                     <div role="button" class="p-1 row border border-secondary rounded barTable">
 
                             <div class="col-2">
-                                <img alt="Gafollas" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-3 w-3" />
+                                <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
                             </div>
 
                             <div class="col-5 d-flex justify-content-center align-items-center">
@@ -114,7 +114,7 @@
                     <div role="button" class="p-1 row border border-secondary rounded barTable">
 
                         <div class="col-2">
-                            <img alt="Gafollas" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-3 w-3" />
+                            <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
                         </div>
 
                         <div class="col-5 d-flex justify-content-center align-items-center">
@@ -161,7 +161,7 @@
                         <div role="button" class="p-1 row border border-secondary rounded barTable">
 
                             <div class="col-2">
-                                <img alt="Gafollas" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-3 w-3" />
+                                <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
                             </div>
 
                             <div class="col-5 d-flex justify-content-center align-items-center">
@@ -198,7 +198,7 @@
                 <div class="card h-100">
                     <div class="card-header">
                         <h5 class="card-title mb-0 text-center">
-                            Tablas #3
+                            {{ __('Premium tables') }}
                         </h5>
                     </div>
 
@@ -219,6 +219,5 @@
 
     </div>
 </div>
-
 
 @endsection

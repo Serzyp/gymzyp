@@ -95,4 +95,12 @@ Route::get('/reload/{id}', [App\Http\Controllers\LikeController::class,'reload']
 Route::post('/comment/save', [App\Http\Controllers\CommentController::class, 'save'])->name('comment.save');
 Route::get('/comment/delete/{id}', [App\Http\Controllers\CommentController::class, 'delete'])->name('comment.delete');
 
+//Sistema de pagos
+
+Route::get('/paypal', [App\Http\Controllers\PayPalController::class,'index'])->name('paypal.index');
+Route::get('/paypal/completed', [App\Http\Controllers\PayPalController::class,'indexCompleted'])->name('paypal.completed');
+Route::get('/paypal/failed', [App\Http\Controllers\PayPalController::class,'indexFailed'])->name('paypal.failed');
+
+Route::get('/paypal/process/{order_id}', [App\Http\Controllers\PayPalController::class,'process'])->name('paypal.process');
+
 
