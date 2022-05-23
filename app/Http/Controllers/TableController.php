@@ -160,5 +160,10 @@ class TableController extends Controller
         return new Response($file);
     }
 
+    public function show($id){
+        $table = Table::find($id);
+        return view('tableView',compact('table'));
+    }
+
 
 }

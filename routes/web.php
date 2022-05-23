@@ -70,7 +70,9 @@ Route::get('/google-callback', function () {
     // $user->token
 });
 
-//Vista para las tablas
+
+
+//Vista para las mis tablas
 
 Route::resource('myTables',App\Http\Controllers\TableController::class)->names('table');
 Route::get('/myTables/image/{filename}', [App\Http\Controllers\TableController::class, 'getImage'])->name('table.image');
@@ -103,4 +105,6 @@ Route::get('/paypal/failed', [App\Http\Controllers\PayPalController::class,'inde
 
 Route::get('/paypal/process/{order_id}', [App\Http\Controllers\PayPalController::class,'process'])->name('paypal.process');
 
+//Vista par ver tablas de otras personas
 
+Route::get('/table/show/{id}',[App\Http\Controllers\TableController::class,'show'])->name('table.show');

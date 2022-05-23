@@ -17,30 +17,31 @@
 
                 <div class="card-body pt-2 pb-1">
                     @foreach ($tableComments as $table)
+                    <a href="{{ route('table.show',$table->id) }}" style="color: rgb(0, 0, 0);text-decoration: none;">
+                        <div class="p-1 row border border-secondary rounded barTable">
 
-                    <div role="button" class="p-1 row border border-secondary rounded barTable">
+                            <div class="col-2">
+                                <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
+                            </div>
 
-                        <div class="col-2">
-                            <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
+                            <div class="col-5 d-flex justify-content-center align-items-center">
+                                <span class="align-middle"> {{ $table->name }} </span>
+                            </div>
+
+                            <span class="col-5 d-flex justify-content-center align-items-center">
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->likes->count() }} <i class="fa-solid fa-heart"></i></span>
+                                </div>
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->commentCount }} <i class="fa-solid fa-comment"></i></span>
+                                </div>
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                </div>
+                            </span>
+
                         </div>
-
-                        <div class="col-5 d-flex justify-content-center align-items-center">
-                            <span class="align-middle"> {{ $table->name }} </span>
-                        </div>
-
-                        <span class="col-5 d-flex justify-content-center align-items-center">
-                            <div class="p-1 bd-highlight">
-                                <span>{{ $table->likes->count() }} <i class="fa-solid fa-heart"></i></span>
-                            </div>
-                            <div class="p-1 bd-highlight">
-                                <span>{{ $table->commentCount }} <i class="fa-solid fa-comment"></i></span>
-                            </div>
-                            <div class="p-1 bd-highlight">
-                                <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
-                            </div>
-                        </span>
-
-                    </div>
+                    </a>
 
                     @endforeach
                     <div class="row mt-4">
@@ -64,30 +65,32 @@
 
                 <div class="card-body pt-2 pb-1">
                     @foreach ($tableNewest as $table)
-                    <div role="button" class="p-1 row border border-secondary rounded barTable">
+                    <a href="{{ route('table.show',$table->id) }}" style="color: rgb(0, 0, 0);text-decoration: none;">
+                        <div class="p-1 row border border-secondary rounded barTable">
 
-                            <div class="col-2">
-                                <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
-                            </div>
-
-                            <div class="col-5 d-flex justify-content-center align-items-center">
-                                <span class="align-middle"> {{ $table->name }} </span>
-                            </div>
-
-                            <span class="col-5 d-flex justify-content-center align-items-center">
-
-                                <div class="p-1 bd-highlight">
-                                    <span>{{ $table->likes->count() }} <i class="fa-solid fa-heart"></i></span>
+                                <div class="col-2">
+                                    <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
                                 </div>
-                                <div class="p-1 bd-highlight">
-                                    <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
-                                </div>
-                                <div class="p-1 bd-highlight">
-                                    <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
-                                </div>
-                            </span>
 
-                    </div>
+                                <div class="col-5 d-flex justify-content-center align-items-center">
+                                    <span class="align-middle"> {{ $table->name }} </span>
+                                </div>
+
+                                <span class="col-5 d-flex justify-content-center align-items-center">
+
+                                    <div class="p-1 bd-highlight">
+                                        <span>{{ $table->likes->count() }} <i class="fa-solid fa-heart"></i></span>
+                                    </div>
+                                    <div class="p-1 bd-highlight">
+                                        <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
+                                    </div>
+                                    <div class="p-1 bd-highlight">
+                                        <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                    </div>
+                                </span>
+
+                        </div>
+                    </a>
                     @endforeach
 
                     <div class="row mt-4">
@@ -110,31 +113,31 @@
 
                 <div class="card-body pt-2 pb-1">
                     @foreach ($tableLikes as $table)
+                    <a href="{{ route('table.show',$table->id) }}" style="color: rgb(0, 0, 0);text-decoration: none;">
+                        <div class="p-1 row border border-secondary rounded barTable">
 
-                    <div role="button" class="p-1 row border border-secondary rounded barTable">
+                            <div class="col-2">
+                                <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
+                            </div>
 
-                        <div class="col-2">
-                            <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
+                            <div class="col-5 d-flex justify-content-center align-items-center">
+                                <span class="align-middle"> {{ $table->name }} </span>
+                            </div>
+
+                            <span class="col-5 d-flex justify-content-center align-items-center">
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->likeCount}} <i class="fa-solid fa-heart"></i></span>
+                                </div>
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
+                                </div>
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                </div>
+                            </span>
+
                         </div>
-
-                        <div class="col-5 d-flex justify-content-center align-items-center">
-                            <span class="align-middle"> {{ $table->name }} </span>
-                        </div>
-
-                        <span class="col-5 d-flex justify-content-center align-items-center">
-                            <div class="p-1 bd-highlight">
-                                <span>{{ $table->likeCount}} <i class="fa-solid fa-heart"></i></span>
-                            </div>
-                            <div class="p-1 bd-highlight">
-                                <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
-                            </div>
-                            <div class="p-1 bd-highlight">
-                                <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
-                            </div>
-                        </span>
-
-                    </div>
-
+                    </a>
                     @endforeach
                     <div class="row mt-4">
                         <div class="col">
@@ -157,31 +160,31 @@
 
                     <div class="card-body pt-2 pb-1">
                         @foreach ($tablePremium as $table)
+                        <a href="{{ route('table.show',$table->id) }}" style="color: rgb(0, 0, 0);text-decoration: none;">
+                            <div class="p-1 row border border-secondary rounded barTable">
 
-                        <div role="button" class="p-1 row border border-secondary rounded barTable">
+                                <div class="col-2">
+                                    <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
+                                </div>
 
-                            <div class="col-2">
-                                <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
+                                <div class="col-5 d-flex justify-content-center align-items-center">
+                                    <span class="align-middle"> {{ $table->name }} </span>
+                                </div>
+
+                                <span class="col-5 d-flex justify-content-center align-items-center">
+                                    <div class="p-1 bd-highlight">
+                                        <span>{{ $table->likes->count()}} <i class="fa-solid fa-heart"></i></span>
+                                    </div>
+                                    <div class="p-1 bd-highlight">
+                                        <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
+                                    </div>
+                                    <div class="p-1 bd-highlight">
+                                        <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                    </div>
+                                </span>
+
                             </div>
-
-                            <div class="col-5 d-flex justify-content-center align-items-center">
-                                <span class="align-middle"> {{ $table->name }} </span>
-                            </div>
-
-                            <span class="col-5 d-flex justify-content-center align-items-center">
-                                <div class="p-1 bd-highlight">
-                                    <span>{{ $table->likes->count()}} <i class="fa-solid fa-heart"></i></span>
-                                </div>
-                                <div class="p-1 bd-highlight">
-                                    <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
-                                </div>
-                                <div class="p-1 bd-highlight">
-                                    <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
-                                </div>
-                            </span>
-
-                        </div>
-
+                        </a>
                         @endforeach
                         <div class="row mt-4">
                             <div class="col">

@@ -78,8 +78,11 @@
                 <div class="comment-block">
                     <div class="d-flex justify-content-center">
                     <a class="btn fs-2 mx-4 d-flex justify-content-center" href="#">
-                        <img class="comment-profile" alt="Profile image" src="{{ route('user.avatar',['filename' => $comment->user->image]) }}">
-                    - {{ $comment->user->nick }}</a>
+                    @if($comment->user->image)
+                        <img class="comment-profile" alt="Profile image" src="{{ route('user.avatar',$comment->user->image) }}"> - {{ $comment->user->nick }}</a>
+                    @else
+                        {{ $comment->user->nick }}</a>
+                    @endif
                     </div>
 
                     <div class="comment-body mt-4">
@@ -88,7 +91,7 @@
 
                         <div class="btn-group">
                             {{-- <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa-solid fa-pen-to-square"></i></a> --}}
-                            @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+                            @if ($comment->user_id == Auth::user()->id || Auth::user()->role == 'admin')
                                 <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa-solid fa-trash-can"></i></a>
                             @endif
                         </div>

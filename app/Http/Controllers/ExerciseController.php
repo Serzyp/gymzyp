@@ -32,9 +32,13 @@ class ExerciseController extends Controller
      */
     public function index($id)
     {
-        $table = Table::find($id);
-        $days = Day::all();
-        return view('tables.myTableConfig', ['codTable' => $id, 'table' => $table, 'days' => $days]);
+        if(Table::find($id)->user_id == auth()->user()->id || auth()->user()->role == 'admin'){
+            $table = Table::find($id);
+            $days = Day::all();
+            return view('tables.myTableConfig', ['codTable' => $id, 'table' => $table, 'days' => $days]);
+        }else{
+            return route('table.index');
+        }
     }
 
     public function exerciseDatatable($cod){
