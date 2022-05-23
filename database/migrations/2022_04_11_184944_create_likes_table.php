@@ -18,7 +18,7 @@ class CreateLikesTable extends Migration
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreignId('table_id');
-            $table->foreign('table_id')->references('id')->on('table');
+            $table->foreign('table_id')->references('id')->on('table_exercises');
             $table->timestamps();
         });
     }
