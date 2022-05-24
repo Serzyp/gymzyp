@@ -8,45 +8,86 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-12 mt-4">
+        <div class="col-md-8 col-12 mt-4">
             <div class="card h-100">
                 <div class="card-header">
                     <h5 class="card-title mb-0 text-center">
-                        {{ __('Most commented tables') }}
+                        {{ __('Titulo de la tabla') }}
                     </h5>
                 </div>
 
                 <div class="card-body pt-2 pb-1">
-                    <table class="table table-borderless">
+                    <table class="table table-bordered">
                         <thead>
+                            <tr class="text-center bg-light">
+                                <th colspan="3">Dia 1</th>
+                            </tr>
                             <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
+                                <th>Ejercicio</th>
+                                <th>Series</th>
+                                <th>Repeticiones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>Clark</td>
-                                <td>Kent</td>
-                                <td>clarkkent@mail.com</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Peter</td>
-                                <td>Parker</td>
-                                <td>peterparker@mail.com</td>
-                            </tr>
-                            <tr>
+                                <td>Sentadillas</td>
                                 <td>3</td>
-                                <td>John</td>
-                                <td>Carter</td>
-                                <td>johncarter@mail.com</td>
+                                <td>10-10-20</td>
+                            </tr>
+                            <tr>
+                                <td>Sentadillas</td>
+                                <td>3</td>
+                                <td>10-10-20</td>
+                            </tr>
+                            <tr>
+                                <td>Sentadillas</td>
+                                <td>3</td>
+                                <td>10-10-20</td>
+                            </tr>
+                            <tr>
+                                <td>Sentadillas</td>
+                                <td>3</td>
+                                <td>10-10-20</td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-12 mt-4">
+            <div class="row">
+                <div class="card h-100 px-0">
+                    <div class="card-header w-100">
+                        <h5 class="card-title mb-0 text-center">
+                            {{ __('User Details') }}
+                        </h5>
+                    </div>
+
+                    <div class="card-body pt-2 pb-1">
+                        <h3>{{ $table->user->name }}</h3>
+                        <p>{{ $table->user->email }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card h-100 px-0">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0 text-center">
+                            {{ __('Likes') }}
+                        </h5>
+                    </div>
+
+                    <div class="card-body pt-2 pb-1">
+
+                            <div class="info-box">
+                                <span class="info-box-icon bg-danger"><i class="fa-regular fa-heart"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Likes</span>
+                                    <span class="info-box-number">99999</span>
+                                </div>
+                            </div>
+
+                    </div>
                 </div>
             </div>
         </div>

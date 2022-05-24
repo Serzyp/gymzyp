@@ -69,10 +69,77 @@ form .avatar{
 
 /* COMENTARIOS */
 
-
-
 .comment-profile {
     width: 50px;
     height: 50px;
     border-radius: 900px;
+}
+
+/* PAGOS BOTON */
+
+#features{
+    background: #212529;
+    border: 2px solid #ffffff;
+    border-radius: 1000px;
+    padding: 10px 25px;
+    color: #ffffff;
+    display: inline-block;
+    font: normal bold 15px "Open Sans", sans-serif;
+    text-align: center;
+}
+
+#features:hover{
+    background: #ffffff;
+    border: 2px solid #212529;
+    color: #212529;
+}
+
+/* Boton like */
+
+.info-box {
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    border-radius: 0.25rem;
+    background-color: #fff;
+    display: flex;
+    margin-bottom: 1rem;
+    min-height: 80px;
+    padding: 0.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.info-box .info-box-icon {
+    border-radius: 0.25rem;
+
+    align-items: center;
+
+    display: flex;
+    font-size: 1.875rem;
+
+    justify-content: center;
+    text-align: center;
+    width: 70px;
+}
+
+.info-box .info-box-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.8;
+    flex: 1;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+.info-box .info-box-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.info-box .info-box-number {
+    display: block;
+    margin-top: 0.25rem;
+    font-weight: 700;
 }

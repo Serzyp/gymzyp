@@ -184,7 +184,7 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                                {{-- {{ __("Choose a language") }}--}}
+                                {{ __("Interface") }}
                                 <i class="fa-solid fa-globe"></i>
 
                             </a>

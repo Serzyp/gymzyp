@@ -215,6 +215,9 @@
                         <div class="d-flex justify-content-center mt-3 mb-3">
                             <p>{{ __('If you want to purchase the pro version, click on this button.') }}</p>
                         </div>
+                        <div class="d-flex justify-content-center mt-3 mb-3">
+                            <button id="features">Buy premium features</button>
+                        </div>
                     </div>
                 </div>
             </div>
