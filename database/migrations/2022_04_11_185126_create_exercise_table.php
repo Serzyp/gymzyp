@@ -16,7 +16,7 @@ class CreateExerciseTable extends Migration
         Schema::create('exercise', function (Blueprint $table) {
             $table->id();
             $table->foreignId('table_id');
-            $table->foreign('table_id')->references('id')->on('table_exercises');
+            $table->foreign('table_id')->references('id')->on('table_exercises')->onDelete('cascade');
             $table->foreignId('day_id');
             $table->foreign('day_id')->references('id')->on('day');
             $table->text('content');
