@@ -44,10 +44,7 @@ class CommentController extends Controller
 		$comment->save();
 
 		// Redirección
-		return redirect()->route('table.exercises', ['id' => $table_id])
-						 ->with([
-							'message' => 'Has publicado tu comentario correctamente!!'
-						 ]);
+		return redirect()->back();
 	}
 
 	public function delete($id){
@@ -57,19 +54,13 @@ class CommentController extends Controller
 		// Conseguir objeto del comentario
 		$comment = Comment::find($id);
 
-		// Comprobar si soy el dueño del comentario o de la publicación
-		if($user && ($comment->user_id == $user->id || $comment->table->user_id == $user->id)){
+		// Comprobar si soy el dueño del comentario o de la publicación o administrador
+		if($user && ($comment->user_id == $user->id || $comment->table->user_id == $user->id || $user->role == 'admin')){
 			$comment->delete();
 
-			return redirect()->route('table.exercises', ['id' => $comment->table->id])
-						 ->with([
-							'message' => 'Comentario eliminado correctamente!!'
-						 ]);
+			return redirect()->back();
 		}else{
-			return redirect()->route('table.exercises', ['id' => $comment->table->id])
-						 ->with([
-							'message' => 'EL COMENTARIO NO SE HA ELIMINADO!!'
-						 ]);
+			return redirect()->back();
 		}
 	}
 }

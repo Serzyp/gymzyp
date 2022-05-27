@@ -91,8 +91,8 @@
 
                         <div class="btn-group">
                             {{-- <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa-solid fa-pen-to-square"></i></a> --}}
-                            @if ($comment->user_id == Auth::user()->id || Auth::user()->role == 'admin')
-                                <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa-solid fa-trash-can"></i></a>
+                            @if ($comment->user_id == Auth::user()->id || Auth::user()->role == 'admin' || $comment->table->user_id == Auth::user()->id)
+                                <a class="btn btn-sm btn-default btn-hover-danger" href="{{ route('comment.delete',$comment->id); }}"><i class="fa-solid fa-trash-can"></i></a>
                             @endif
                         </div>
                     </div>
@@ -106,11 +106,7 @@
 
                     <input type="hidden" name="table_id" value="{{ $table->id }}" />
                     <textarea class="form-control" rows="2" {{ $errors->has('content') ? 'is-invalid' : '' }}" name="content"></textarea>
-                    @if($errors->has('content'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('content') }}</strong>
-                        </span>
-                    @endif
+
                     <div class="mt-2 clearfix">
                     <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-pencil fa-fw"></i> Share</button>
                     </div>

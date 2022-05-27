@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Day;
 use App\Models\Table;
 use App\Models\Exercise;
 use Illuminate\Http\Request;
@@ -162,7 +163,8 @@ class TableController extends Controller
 
     public function show($id){
         $table = Table::find($id);
-        return view('tableView',compact('table'));
+        $exercises = Exercise::join('day', 'day.id', '=', 'exercise.day_id')->select('exercise.*','day.day','day.moment')->where('exercise.table_id','=',$id)->orderBy('day.id')->get();
+        return view('tableView',compact('table','exercises'));
     }
 
 

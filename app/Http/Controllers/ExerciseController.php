@@ -46,7 +46,7 @@ class ExerciseController extends Controller
             return Datatables::of(Exercise::join('day', 'day.id', '=', 'exercise.day_id')
             ->select('exercise.*','day.day','day.moment')
             ->where('exercise.table_id','=',$cod)
-            ->orderby('day.id')
+            ->orderBy('day.id')
             ->get())
             ->addIndexColumn()
             ->addColumn('Actions', function ($row) {

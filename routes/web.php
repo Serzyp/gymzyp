@@ -108,3 +108,4 @@ Route::get('/paypal/process/{order_id}', [App\Http\Controllers\PayPalController:
 //Vista par ver tablas de otras personas
 
 Route::get('/table/show/{id}',[App\Http\Controllers\TableController::class,'show'])->name('table.show');
+
