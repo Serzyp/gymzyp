@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -249,11 +249,11 @@ return [
         //     'type' => 'sidebar-menu-search',
         //     'text' => 'search',
         // ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+        // [
+        //     'text' => 'blog',
+        //     'url'  => 'admin/blog',
+        //     'can'  => 'manage-blog',
+        // ],
         // [
         //     'text'        => 'pages',
         //     'url'         => 'admin/pages',
@@ -264,13 +264,19 @@ return [
         ['header' => 'USERS SETTINGS'],
         [
             'text' => 'Users List',
-            'url'  => 'admin/users',
+            'route'  => 'admin.users',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'Permissions',
             'url'  => 'admin/permisions',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+        ['header' => 'DATABASE SETTINGS'],
+        [
+            'text' => 'Adminer',
+            'url'  => '/adminer',
+            'icon' => 'fas fa-fw fa-database',
         ],
         // [
         //     'text'    => 'multilevel',

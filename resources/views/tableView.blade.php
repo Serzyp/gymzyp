@@ -34,6 +34,9 @@
                 </div>
 
                 <div class="card-body pt-2 pb-1 text-center">
+                    <div class="imageExercises">
+                        <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top" alt="...">
+                    </div>
                     <p>
                         {{ $table->description }}
                     </p>

@@ -10,7 +10,7 @@
     <div class="row m-2">
         <div class="col-12 col-md-3 ">
             <div class="imageExercises">
-                <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top" width='50px' alt="...">
+                <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top" alt="...">
             </div>
             <div class="actionBox text-center m-1">
                 <a class="edit btn btn-primary btn-sm" id="editTable" href="javascript:void(0)" ><i class="fas fa-pen fa-2x"></i></a>

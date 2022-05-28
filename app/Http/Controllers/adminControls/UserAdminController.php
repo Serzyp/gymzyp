@@ -35,7 +35,7 @@ class UserAdminController extends Controller
     {
         $userList = User::all();
 
-        return view('',compact('userList'));
+        return view('admin.userList',compact('userList'));
     }
 
     public function store(Request $request){

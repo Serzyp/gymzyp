@@ -143,3 +143,8 @@ form .avatar{
     margin-top: 0.25rem;
     font-weight: 700;
 }
+
+.imageExercises{
+    width: 300px;
+    margin: 10px auto;
+}
