@@ -55,20 +55,20 @@
                         <div class="m-4">
                             @if($table->user->image)
                                 <img src="{{ route('user.avatar',$table->user->image) }}"
-                                class="rounded-circle img-fluid" style="width: 100px;" />
+                                class="rounded-circle img-fluid" style="width: 100px;  height: 100px;" />
                             @else
                                 {{-- https://pixabay.com/images/id-3331256/ --}}
                                 <img src="{{ asset('img/DefaultUser.png') }}"
-                                class="rounded-circle img-fluid" style="width: 100px;" />
+                                class="rounded-circle img-fluid" style="width: 100px; height: 100px;" />
 
                             @endif
                         </div>
                           <h4 class="mb-2">{{ $table->user->name }}</h4>
                           <p class="text-muted mb-2">{{ $table->user->email }}</p>
 
-                          <button type="button" class="btn btn-primary btn-rounded btn-lg mb-2">
+                          <a class="btn btn-primary btn-rounded btn-lg mb-2" href='mailto:{{ $table->user->email }}'>
                             {{ __("Message now") }}
-                          </button>
+                          </a>
                     </div>
                 </div>
             </div>
@@ -171,19 +171,6 @@
                         @endforeach
 
                     </table>
-                </div>
-                <hr>
-                <div class="card-body">
-                    <form action="{{ route('comment.save') }}" method="post">
-                        @csrf
-
-                        <input type="hidden" name="table_id" value="{{ $table->id }}" />
-                        <textarea class="form-control" rows="2" {{ $errors->has('content') ? 'is-invalid' : '' }}" name="content"></textarea>
-
-                        <div class="mt-2 clearfix">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-pencil fa-fw"></i> Share</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
