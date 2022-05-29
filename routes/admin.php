@@ -14,3 +14,7 @@ Route::get('/permissions', [App\Http\Controllers\adminControls\PermissionAdminCo
 Route::get('/permissions/getDatatable', [App\Http\Controllers\adminControls\PermissionAdminController::class, 'getDatatable'])->name('admin.permissions.getDatatable');
 Route::post('/permissions/store', [App\Http\Controllers\adminControls\PermissionAdminController::class, 'store'])->name('admin.permissions.store');
 Route::get('/permissions/edit/{id}', [App\Http\Controllers\adminControls\PermissionAdminController::class, 'edit'])->name('admin.permissions.edit');
+
+//PAYMENTS
+Route::get('/payments', [App\Http\Controllers\adminControls\PaymentsAdminController::class, 'index'])->name('admin.payments');
+Route::get('/payments/getDatatable', [App\Http\Controllers\adminControls\PaymentsAdminController::class, 'getDatatable'])->name('admin.payments.getDatatable');

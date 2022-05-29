@@ -272,6 +272,12 @@ return [
             'route'  => 'admin.permissions',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        ['header' => 'PAYMENTS'],
+        [
+            'text' => 'Payments',
+            'route'  => 'admin.payments',
+            'icon' => 'far fa-fw fa-credit-card',
+        ],
         ['header' => 'DATABASE SETTINGS'],
         [
             'text' => 'Adminer',
