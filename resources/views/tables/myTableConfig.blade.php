@@ -81,7 +81,11 @@
                     @if($comment->user->image)
                         <img class="comment-profile" alt="Profile image" src="{{ route('user.avatar',$comment->user->image) }}"> - {{ $comment->user->nick }}</a>
                     @else
-                        {{ $comment->user->nick }}</a>
+                        @if($comment->user->nick)
+                            {{ $comment->user->nick }}</a>
+                        @else
+                            {{ $comment->user->name }}</a>
+                        @endif
                     @endif
                     </div>
 
