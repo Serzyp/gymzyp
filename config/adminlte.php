@@ -269,7 +269,7 @@ return [
         ],
         [
             'text' => 'Permissions',
-            'url'  => 'admin/permisions',
+            'route'  => 'admin.permissions',
             'icon' => 'fas fa-fw fa-lock',
         ],
         ['header' => 'DATABASE SETTINGS'],
@@ -369,16 +369,6 @@ return [
     */
 
     'plugins' => [
-        'Jquery' =>[
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//code.jquery.com/jquery-3.6.0.js',
-                ],
-            ],
-        ],
         'Datatables' => [
             'active' => false,
             'files' => [
@@ -560,7 +550,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js',
                 ],
             ],
         ],
@@ -580,12 +570,12 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js',
                 ],
             ],
         ],

@@ -39,7 +39,6 @@ class UserAdminController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
-
     }
 
 

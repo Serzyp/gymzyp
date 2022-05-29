@@ -1,11 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'User list')
 
 @section('content_header')
-    <h1>ADMIN</h1>
+    <h1>User List</h1>
 @stop
 
+@section('plugins.Datatables', true)
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -38,11 +39,18 @@
 @section('js')
     <script type="text/javascript">
     $(document).ready(function() {
-         var dataTable = $('#datatable').DataTables({
+         var dataTable = $('#datatable').DataTable({
             dom: 'Bfrtip',
             lengthMenu: [
                 [10, 40, 50],
                 ['10 rows', '40 rows', '50 rows']
+            ],
+            buttons: [
+            //     // 'pdf',
+            //     //'copy',
+            //     'colvis',
+            //     'pageLength',
+            //     // 'excel',
             ],
             serverSide: true,
             processing: true,
