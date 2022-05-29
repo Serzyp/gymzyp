@@ -22,7 +22,7 @@
                                 <span>Annual publications on website</span>
                             </div>
                             <div class="align-self-center">
-                                <h1>18,000</h1>
+                                <h1>{{ $contTable }}</h1>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                                 <span>Annual publication comments</span>
                             </div>
                             <div class="align-self-center">
-                                <h1>84,695</h1>
+                                <h1>{{ $contComment }}</h1>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                                 <span>Annual users on website</span>
                             </div>
                             <div class="align-self-center">
-                                <h1>18,000</h1>
+                                <h1>{{ $contUser }}</h1>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                                 <span>Annual likes on website</span>
                             </div>
                             <div class="align-self-center">
-                                <h1>84,695</h1>
+                                <h1>{{ $contLike }}</h1>
                             </div>
                         </div>
                     </div>

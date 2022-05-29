@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\User;
+use App\Models\Table;
+use App\Models\Comment;
 
 
 class AdminController extends Controller
@@ -19,6 +22,10 @@ class AdminController extends Controller
     }
     public function index(){
         $contUser = User::all()->count();
-        return view('admin.home');
+        $contComment = Comment::all()->count();
+        $contLike = Like::all()->count();
+        $contTable = Table::all()->count();
+        return view('admin.home', compact('contUser','contComment','contLike','contTable'));
     }
+
 }
