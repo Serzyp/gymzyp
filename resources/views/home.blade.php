@@ -36,7 +36,11 @@
                                     <span>{{ $table->commentCount }} <i class="fa-solid fa-comment"></i></span>
                                 </div>
                                 <div class="p-1 bd-highlight">
-                                    <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                    @if ($table->user->nick)
+                                        <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                    @else
+                                        <span>{{ $table->user->name }} <i class="fa-solid fa-user"></i></span>
+                                    @endif
                                 </div>
                             </span>
 
@@ -85,7 +89,11 @@
                                         <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
                                     </div>
                                     <div class="p-1 bd-highlight">
-                                        <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                        @if ($table->user->nick)
+                                            <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                        @else
+                                            <span>{{ $table->user->name }} <i class="fa-solid fa-user"></i></span>
+                                        @endif
                                     </div>
                                 </span>
 
@@ -132,7 +140,11 @@
                                     <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
                                 </div>
                                 <div class="p-1 bd-highlight">
-                                    <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                    @if ($table->user->nick)
+                                        <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                    @else
+                                        <span>{{ $table->user->name }} <i class="fa-solid fa-user"></i></span>
+                                    @endif
                                 </div>
                             </span>
 
@@ -179,7 +191,11 @@
                                         <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
                                     </div>
                                     <div class="p-1 bd-highlight">
-                                        <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                        @if ($table->user->nick)
+                                            <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                        @else
+                                            <span>{{ $table->user->name }} <i class="fa-solid fa-user"></i></span>
+                                        @endif
                                     </div>
                                 </span>
 
