@@ -148,3 +148,28 @@ form .avatar{
     width: 300px;
     margin: 10px auto;
 }
+
+/* From uiverse.io by @adamgiebl */
+.btnPremium {
+    background: #FBCA1F;
+    font-family: inherit;
+    padding: 0.3em 1em;
+    font-weight: 200;
+    border: 2px solid black;
+    border-radius: 0.4em;
+    box-shadow: 0.1em 0.1em;
+    color: black;
+    text-decoration: none;
+}
+
+.btnPremium:hover {
+    transform: translate(-0.05em, -0.05em);
+    box-shadow: 0.15em 0.15em;
+    color: black;
+}
+
+.btnPremium:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+    color: black;
+}
