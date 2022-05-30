@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page_title')
-{{ __('Completed payment') }}
+{{ __('Failed payment') }}
 @endsection
 
 @section('content')
