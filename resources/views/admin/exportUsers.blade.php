@@ -5,7 +5,7 @@
     <tr></tr>
     <tr>
         <th></th>
-        <th colspan="6" style="text-align:center;border:1px solid black;font-size: 30px;font-weight: bolder;height:50px;background-color: #F7D43A;">GYMZYP</th>
+        <th colspan="8" style="text-align:center;border:1px solid black;font-size: 30px;font-weight: bolder;height:50px;background-color: #F7D43A;">GYMZYP</th>
     </tr>
     <tr></tr>
     <tr>
@@ -28,8 +28,8 @@
             <td style="text-align:center;border:1px solid black;">{{ $user->email }}</td>
             <td style="text-align:center;border:1px solid black;">{{ $user->image }}</td>
             <td style="text-align:center;border:1px solid black;">{{ $user->external_auth }}</td>
-            <td style="text-align:center;border:1px solid black;">{{ Carbon::parse($payment->created_at)->formatLocalized('%d %B %Y'); }}</td>
-            <td style="text-align:center;border:1px solid black;">{{ Carbon::parse($payment->updated_at)->formatLocalized('%d %B %Y'); }}</td>
+            <td style="text-align:center;border:1px solid black;">{{ Carbon::parse($user->created_at)->formatLocalized('%d %B %Y'); }}</td>
+            <td style="text-align:center;border:1px solid black;">{{ Carbon::parse($user->updated_at)->formatLocalized('%d %B %Y'); }}</td>
         </tr>
     @endforeach
 </table>
