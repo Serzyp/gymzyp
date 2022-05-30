@@ -6,6 +6,7 @@
     <h1>ADMIN PANEL</h1>
 @stop
 
+
 @section('content')
     <p>This zone is only for admin. Here you can see several statistics about the website.</p>
 

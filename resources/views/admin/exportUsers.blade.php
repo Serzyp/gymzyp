@@ -13,8 +13,8 @@
         <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:200px;border:2px solid black;">Name</th>
         <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:200px;border:2px solid black;">Surname</th>
         <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:200px;border:2px solid black;">Nickname</th>
-        <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:200px;border:2px solid black;">Email</th>
-        <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:200px;border:2px solid black;">Image path</th>
+        <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:250px;border:2px solid black;">Email</th>
+        <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:250px;border:2px solid black;">Image path</th>
         <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:200px;border:2px solid black;">External Auth</th>
         <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:200px;border:2px solid black;">Created at</th>
         <th style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #00ccff;color: black;width:200px;border:2px solid black;">Updated at</th>
