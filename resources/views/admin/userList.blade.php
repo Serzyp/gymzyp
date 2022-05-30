@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <form action="#" method="POST">
+                    <form action="{{ route('admin.user.export') }}" method="POST">
                         @csrf
                         @method('POST')
                         <div class="row mt-2">

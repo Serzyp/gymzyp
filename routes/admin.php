@@ -18,3 +18,7 @@ Route::get('/permissions/edit/{id}', [App\Http\Controllers\adminControls\Permiss
 //PAYMENTS
 Route::get('/payments', [App\Http\Controllers\adminControls\PaymentsAdminController::class, 'index'])->name('admin.payments');
 Route::get('/payments/getDatatable', [App\Http\Controllers\adminControls\PaymentsAdminController::class, 'getDatatable'])->name('admin.payments.getDatatable');
+
+//EXPORTACIÓN
+Route::post('/export',[App\Http\Controllers\ExcelExportController::class,'user'])->name('admin.user.export');
+Route::post('/exportPayments',[App\Http\Controllers\ExcelExportController::class,'payment'])->name('admin.payment.export');

@@ -36,11 +36,12 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <form action="#" method="POST">
+                    <form action="{{ route('table.export') }}" method="POST">
                         @csrf
                         @method('POST')
                         <div class="row mt-2">
                             <div class="col-md-3 col-sm-12">
+                                <input type="hidden" name="id_table" value="{{ $table->id }}">
                                 <button type="submit" class="btn btn-success">{{ __('Excel export') }}</button>
                             </div>
                         </div>

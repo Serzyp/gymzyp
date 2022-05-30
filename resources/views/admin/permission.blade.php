@@ -12,7 +12,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <div>
+                {{-- <div>
                     <form action="#" method="POST">
                         @csrf
                         @method('POST')
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <div class="table-responsive">
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
 

@@ -142,35 +142,47 @@
                                     <th>Series</th>
                                     <th>Repeticiones</th>
                                 </tr>
-                            @endif
-                            @if($exercises[$i]->day_id != $exercises[$n]->day_id)
-                                <tr class="text-center bg-light">
-                                    <th colspan="3">{{ $exercise->day }} - {{ $exercise->moment }}</th>
-                                </tr>
                                 <tr>
-                                    <th>Ejercicio</th>
-                                    <th>Series</th>
-                                    <th>Repeticiones</th>
+                                    <td>{{ $exercise->content }}</td>
+                                    <td>{{ $exercise->sets }}</td>
+                                    <td>{{ $exercise->reps }}</td>
                                 </tr>
                                 @php
-                                    $n = $i +1;
+                                    $n = $i;
                                 @endphp
                             @else
-                                <tr>
-                                    <td>{{ $exercise->content }}</td>
-                                    <td>{{ $exercise->sets }}</td>
-                                    <td>{{ $exercise->reps }}</td>
-                                </tr>
+                                @if($exercises[$i]->day_id != $exercises[$n]->day_id)
+                                    <tr class="text-center bg-light">
+                                        <th colspan="3">{{ $exercise->day }} - {{ $exercise->moment }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Ejercicio</th>
+                                        <th>Series</th>
+                                        <th>Repeticiones</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ $exercise->content }}</td>
+                                        <td>{{ $exercise->sets }}</td>
+                                        <td>{{ $exercise->reps }}</td>
+                                    </tr>
+                                    @php
+                                        $n = $i;
+                                    @endphp
+                                @else
+                                    <tr>
+                                        <td>{{ $exercise->content }}</td>
+                                        <td>{{ $exercise->sets }}</td>
+                                        <td>{{ $exercise->reps }}</td>
+                                    </tr>
+                                @endif
+                                {{-- @if ($loop->last)
+                                    <tr>
+                                        <td>{{ $exercise->content }}</td>
+                                        <td>{{ $exercise->sets }}</td>
+                                        <td>{{ $exercise->reps }}</td>
+                                    </tr>
+                                @endif --}}
                             @endif
-
-                            @if ($loop->last)
-                                <tr>
-                                    <td>{{ $exercise->content }}</td>
-                                    <td>{{ $exercise->sets }}</td>
-                                    <td>{{ $exercise->reps }}</td>
-                                </tr>
-                            @endif
-
                         @endforeach
 
                     </table>
