@@ -196,6 +196,7 @@
                                         @else
                                             <span>{{ $table->user->name }} <i class="fa-solid fa-user"></i></span>
                                         @endif
+
                                     </div>
                                 </span>
 
