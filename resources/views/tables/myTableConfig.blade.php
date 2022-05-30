@@ -221,6 +221,18 @@
                                 <span class="text-danger error-text description_error"></span>
                             </div>
                         </div>
+                        @if (Auth::user()->role == 'premium' || Auth::user()->role == 'admin')
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>{{ __('Premium') }}</label>
+                                    <select name="paid_mode" class="form-select" id="paid_mode">
+                                        <option value="0">{{ __('No') }}</option>
+                                        <option value="1">{{ __('Yes') }}</option>
+                                    </select>
+                                    <span class="text-danger error-text paid_mode_error"></span>
+                                </div>
+                            </div>
+                        @endif
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="image_path">{{ __('Imagen') }}</label>
@@ -657,7 +669,7 @@
                         $('#user_id').val(data.table.user_id).change();
                         $('#name').val(data.table.name);
                         $('#description').val(data.table.description);
-
+                        $('#paid_mode').val(data.table.paid_mode).change();
 
                         $('#tablesModalTable').modal('show');
                     },
