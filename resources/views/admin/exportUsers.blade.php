@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <table id="tableGym" style="border-collapse: collapse;border: 1px solid rgb(0, 0, 0);">
     <tr></tr>
     <tr>
