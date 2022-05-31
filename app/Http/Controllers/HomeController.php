@@ -43,6 +43,6 @@ class HomeController extends Controller
                             ->orderBy('commentCount','desc')
                             ->paginate(5,['*'],'tableComments');
 
-        return view('home',compact('tableNewest','tablePremium','tableLikes','tableComments'));
+        return view('home2',compact('tableNewest','tablePremium','tableLikes','tableComments'));
     }
 }

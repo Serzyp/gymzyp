@@ -148,6 +148,7 @@ form .avatar{
     width: 300px;
     margin: 10px auto;
 }
+
 /* https://uiverse.io/detail/adamgiebl/giant-donkey-36 */
 /* From uiverse.io by @adamgiebl */
 .btnPremium {
@@ -172,4 +173,34 @@ form .avatar{
     transform: translate(0.05em, 0.05em);
     box-shadow: 0.05em 0.05em;
     color: black;
+}
+
+/* Fondo de las imagenes */
+body{
+    background-color: #39b4da82 !important;
+}
+
+.navbarColor{
+    background-color: #6766cc !important;
+    background-image: linear-gradient(90deg, #6766cc 0%, #5e78d2 16%, #5489d7 36%, #4a9adc 52%, #35abe6 74%, #20bcf0 100%) !important;
+}
+
+.btn-gym{
+        background-image: linear-gradient(to right, #35abe6  0%, #6766cc  51%, #20bcf0  100%);
+        padding: 10px 25px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 20px;
+        border: 0px;
+}
+
+
+.btn-gym:hover {
+    background-position: center right; /* Cambiando la posicion para crear efecto de color */
+    color: #fff;
+    text-decoration: none;
 }
