@@ -25,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $tableAll = Table::orderBy('id')->paginate(5,['*'],'tableAll');
+
         $tableNewest = Table::orderBy('created_at','desc')->where('paid_mode','0')->paginate(5,['*'],'tableNewest');
 
         $tablePremium = Table::where('paid_mode','1')->paginate(5,['*'],'tablePremium');
@@ -43,6 +45,6 @@ class HomeController extends Controller
                             ->orderBy('commentCount','desc')
                             ->paginate(5,['*'],'tableComments');
 
-        return view('home2',compact('tableNewest','tablePremium','tableLikes','tableComments'));
+        return view('home2',compact('tableAll','tableNewest','tablePremium','tableLikes','tableComments'));
     }
 }

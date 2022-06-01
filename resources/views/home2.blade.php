@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-3 col-12 mt-4">
             <div class="d-flex flex-column align-items-stretch bg-white">
-                <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 text-decoration-none border-bottom">
+                <a href="#" class="d-flex align-items-center flex-shrink-0 p-3 text-decoration-none justify-content-center border-bottom">
                   <span class="fs-5 fw-semibold">{{ __('Categories') }}</span>
                 </a>
                 <div class="list-group list-group-flush border-bottom scrollarea">
@@ -41,6 +41,60 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-8 col-12 mt-4 d-block" id="tableAll">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0 text-center">
+                        {{ __('All tables') }}
+                    </h5>
+                </div>
+
+                <div class="card-body pt-2 pb-1">
+                    @foreach ($tableAll as $table)
+                    <a href="{{ route('table.show',$table->id) }}" style="color: rgb(0, 0, 0);text-decoration: none;">
+                        <div class="p-1 row border border-secondary rounded barTable">
+
+                            <div class="col-2">
+                                <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
+                            </div>
+
+                            <div class="col-5 d-flex justify-content-center align-items-center">
+                                <span class="align-middle"> {{ $table->name }} </span>
+
+                            </div>
+
+                            <span class="col-5 d-flex justify-content-center align-items-center">
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->likes->count() }} <i class="fa-solid fa-heart"></i></span>
+                                </div>
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->commentCount }} <i class="fa-solid fa-comment"></i></span>
+                                </div>
+                                <div class="p-1 bd-highlight">
+                                    @if ($table->user->nick)
+                                        <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                    @else
+                                        <span>{{ $table->user->name }} <i class="fa-solid fa-user"></i></span>
+                                    @endif
+                                </div>
+                            </span>
+
+                        </div>
+                    </a>
+
+                    @endforeach
+                    <div class="row mt-4">
+                        <div class="col">
+                            <div class="d-flex justify-content-center">
+                                {!! $tableAll->links() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-8 col-12 mt-4 d-none" id="tableComment">
             <div class="card h-100">
                 <div class="card-header">
@@ -60,6 +114,7 @@
 
                             <div class="col-5 d-flex justify-content-center align-items-center">
                                 <span class="align-middle"> {{ $table->name }} </span>
+
                             </div>
 
                             <span class="col-5 d-flex justify-content-center align-items-center">
@@ -281,29 +336,41 @@
 
     $(document).ready(function() {
 
-        function cleanClass() {
+        function cleanAllClasses() {
+            $("#tableAll").removeClass("d-none");
             $("#tableComment").removeClass("d-none");
             $("#tablePremium").removeClass("d-none");
             $("#tableLikes").removeClass("d-none");
             $("#tableRecent").removeClass("d-none");
 
+            $("#tableAll").removeClass("d-block");
             $("#tableComment").removeClass("d-block");
             $("#tablePremium").removeClass("d-block");
             $("#tableLikes").removeClass("d-block");
             $("#tableRecent").removeClass("d-block");
 
+            $("#allTables").removeClass("active");
+            $("#recentTables").removeClass("active");
+            $("#likeTables").removeClass("active");
+            $("#commentTables").removeClass("active");
+            $("#premiumTables").removeClass("active");
+
         }
 
-        $('#allTable').click(function(){
-            cleanClass();
-            $("#tableComment").addClass("d-block");
+        $('#allTables').click(function(){
+            cleanAllClasses();
+            $('#allTables').addClass("active");
+            $("#tableAll").addClass("d-block");
+            $("#tableComment").addClass("d-none");
             $("#tablePremium").addClass("d-none");
             $("#tableLikes").addClass("d-none");
             $("#tableRecent").addClass("d-none");
         });
 
         $('#recentTables').click(function(){
-            cleanClass();
+            cleanAllClasses();
+            $('#recentTables').addClass("active");
+            $("#tableAll").addClass("d-none");
             $("#tableComment").addClass("d-none");
             $("#tablePremium").addClass("d-none");
             $("#tableLikes").addClass("d-none");
@@ -311,7 +378,9 @@
         });
 
         $('#likeTables').click(function(){
-            cleanClass();
+            cleanAllClasses();
+            $('#likeTables').addClass("active");
+            $("#tableAll").addClass("d-none");
             $("#tableComment").addClass("d-none");
             $("#tablePremium").addClass("d-none");
             $("#tableLikes").addClass("d-block");
@@ -319,7 +388,9 @@
         });
 
         $('#commentTables').click(function(){
-            cleanClass();
+            cleanAllClasses();
+            $('#commentTables').addClass("active");
+            $("#tableAll").addClass("d-none");
             $("#tableComment").addClass("d-block");
             $("#tablePremium").addClass("d-none");
             $("#tableLikes").addClass("d-none");
@@ -327,7 +398,9 @@
         });
 
         $('#premiumTables').click(function(){
-            cleanClass();
+            cleanAllClasses();
+            $('#premiumTables').addClass("active");
+            $("#tableAll").addClass("d-none");
             $("#tableComment").addClass("d-none");
             $("#tablePremium").addClass("d-block");
             $("#tableLikes").addClass("d-none");
