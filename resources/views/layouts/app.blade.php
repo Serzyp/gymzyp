@@ -177,6 +177,10 @@
                                 <div class="container-avatar">
                                     @if (Auth::user()->image)
                                         <img src="{{ route('user.avatar',['filename' => Auth::user()->image]) }}" class="avatar" alt="Avatar usuario">
+                                    @else
+                                        {{-- https://pixabay.com/images/id-3331256/ --}}
+                                        <img src="{{ asset('img/DefaultUser.png') }}" class="avatar" alt="Avatar usuario" />
+
                                     @endif
                                 </div>
                             </li>
