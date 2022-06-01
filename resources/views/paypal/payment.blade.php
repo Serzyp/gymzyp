@@ -88,20 +88,22 @@
                     // }
 
                     if (errorDetail){
-                        console.log("ibeee");
-                        var msg = 'Sorry, your transaction could not be processed.';
 
-                        return alert(msg);
+                        var msg = 'Sorry, your transaction could not be processed.';
                         location.href = "{{ route('paypal.failed') }}";
+                        // return alert(msg);
+                        console.log(msg);
+
                     }
                     // console.log('data', data);
                     // console.log('actions', actions);
                     // console.log('response', response);
                     return actions.order.capture().then(function(details){
+                        //APARTIR DE AQUI REDIRIGIR A PAGINA NUEVA
+                        location.href = "{{ route('paypal.completed') }}";
                         alert('Transaction completed by ' + details.payer.name.given_name);
                     });
-                    //APARTIR DE AQUI REDIRIGIR A PAGINA NUEVA
-                    location.href = "{{ route('paypal.completed') }}";
+
                 });
 
 
