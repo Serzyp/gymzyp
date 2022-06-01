@@ -124,6 +124,7 @@
                         </div>
                     </div>
                     @if (Auth::user()->role == 'premium' || Auth::user()->role == 'admin')
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label>{{ __('Premium') }}</label>
