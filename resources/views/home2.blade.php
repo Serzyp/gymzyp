@@ -251,8 +251,7 @@
             </div>
         </div>
         <div class="col-md-8 col-12 mt-4 d-none" id="tablePremium">
-            @if(auth()->user()->role == 'pro' || auth()->user()->role == 'admin')
-
+            @if(auth()->user()->role == 'premium' || auth()->user()->role == 'admin')
                 <div class="card h-100">
                     <div class="card-header">
                         <h5 class="card-title mb-0 text-center">
