@@ -83,16 +83,16 @@
                     //  (3) Que se complete la transacción
                     var errorDetail = Array.isArray(response.details) && response.details[0];
 
-                    if (errorDetail && errorDetail.issue == 'INSTRUMENT_DECLINED'){
-                        console.log("iaaaa");
-                        return actions.restart();
-                    }
+                    // if (errorDetail && errorDetail.issue == 'INSTRUMENT_DECLINED'){
+                    //     return actions.restart();
+                    // }
 
                     if (errorDetail){
                         console.log("ibeee");
                         var msg = 'Sorry, your transaction could not be processed.';
 
                         return alert(msg);
+                        location.href = "{{ route('paypal.failed') }}";
                     }
                     // console.log('data', data);
                     // console.log('actions', actions);
@@ -101,7 +101,7 @@
                         alert('Transaction completed by ' + details.payer.name.given_name);
                     });
                     //APARTIR DE AQUI REDIRIGIR A PAGINA NUEVA
-                    // location.href = '';
+                    location.href = "{{ route('paypal.completed') }}";
                 });
 
 
