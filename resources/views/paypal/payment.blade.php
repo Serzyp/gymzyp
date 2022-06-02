@@ -67,7 +67,7 @@
                     },
                     purchase_units: [{
                         amount:{
-                            value: '5'
+                            value: '10'
                         }
                     }]
                 });

@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-12 mt-4">
@@ -13,7 +16,7 @@
                   <span class="fs-5 fw-semibold">{{ __('Categories') }}</span>
                 </a>
                 <div class="list-group list-group-flush border-bottom scrollarea">
-                    <a href="javascript:void(0)" class="list-group-item py-3 lh-tight active" id="allTables">
+                    <a href="javascript:void(0)" class="list-group-item py-3 lh-tight" id="allTables">
                         <div class="d-flex w-100 align-items-center justify-content-between">
                             <strong class="mb-1">{{ __('All tables') }}</strong>
                         </div>
@@ -38,11 +41,16 @@
                             <strong class="mb-1">{{ __('Premium') }}</strong>
                         </div>
                     </a>
+                    <a href="javascript:void(0)" class="list-group-item py-3 lh-tight" id="mylikesTables">
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                            <strong class="mb-1">{{ __('My likes') }}</strong>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-8 col-12 mt-4 d-block" id="tableAll">
+        <div class="col-md-8 col-12 mt-4 d-none" id="tableAll">
             <div class="card h-100">
                 <div class="card-header">
                     <h5 class="card-title mb-0 text-center">
@@ -69,7 +77,7 @@
                                     <span>{{ $table->likes->count() }} <i class="fa-solid fa-heart"></i></span>
                                 </div>
                                 <div class="p-1 bd-highlight">
-                                    <span>{{ $table->commentCount }} <i class="fa-solid fa-comment"></i></span>
+                                    <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
                                 </div>
                                 <div class="p-1 bd-highlight">
                                     @if ($table->user->nick)
@@ -122,7 +130,7 @@
                                     <span>{{ $table->likes->count() }} <i class="fa-solid fa-heart"></i></span>
                                 </div>
                                 <div class="p-1 bd-highlight">
-                                    <span>{{ $table->commentCount }} <i class="fa-solid fa-comment"></i></span>
+                                    <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
                                 </div>
                                 <div class="p-1 bd-highlight">
                                     @if ($table->user->nick)
@@ -328,33 +336,87 @@
 
             @endif
         </div>
+
+        <div class="col-md-8 col-12 mt-4 d-none" id="tableLikesUser">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0 text-center">
+                        {{ __('Tables I liked') }}
+                    </h5>
+                </div>
+
+                <div class="card-body pt-2 pb-1">
+                    @foreach ($tableLikesUser as $table)
+                    <a href="{{ route('table.show',$table->id) }}" style="color: rgb(0, 0, 0);text-decoration: none;">
+                        <div class="p-1 row border border-secondary rounded barTable">
+
+                            <div class="col-2">
+                                <img alt="imagen" src="{{ route('table.image',['filename' => $table->image_path]) }}" class="h-3 w-3" />
+                            </div>
+
+                            <div class="col-5 d-flex justify-content-center align-items-center">
+                                <span class="align-middle"> {{ $table->name }} </span>
+                            </div>
+
+                            <span class="col-5 d-flex justify-content-center align-items-center">
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->likeCount}} <i class="fa-solid fa-heart"></i></span>
+                                </div>
+                                <div class="p-1 bd-highlight">
+                                    <span>{{ $table->comments->count() }} <i class="fa-solid fa-comment"></i></span>
+                                </div>
+                                <div class="p-1 bd-highlight">
+                                    @if ($table->user->nick)
+                                        <span>{{ $table->user->nick }} <i class="fa-solid fa-user"></i></span>
+                                    @else
+                                        <span>{{ $table->user->name }} <i class="fa-solid fa-user"></i></span>
+                                    @endif
+                                </div>
+                            </span>
+
+                        </div>
+                    </a>
+                    @endforeach
+                    <div class="row mt-4">
+                        <div class="col">
+                            <div class="d-flex justify-content-center">
+                                {!! $tableLikesUser->links() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript">
 
     $(document).ready(function() {
-
         function cleanAllClasses() {
             $("#tableAll").removeClass("d-none");
             $("#tableComment").removeClass("d-none");
             $("#tablePremium").removeClass("d-none");
             $("#tableLikes").removeClass("d-none");
             $("#tableRecent").removeClass("d-none");
+            $("#tableLikesUser").removeClass("d-none");
 
             $("#tableAll").removeClass("d-block");
             $("#tableComment").removeClass("d-block");
             $("#tablePremium").removeClass("d-block");
             $("#tableLikes").removeClass("d-block");
             $("#tableRecent").removeClass("d-block");
+            $("#tableLikesUser").removeClass("d-block");
 
             $("#allTables").removeClass("active");
             $("#recentTables").removeClass("active");
             $("#likeTables").removeClass("active");
             $("#commentTables").removeClass("active");
             $("#premiumTables").removeClass("active");
+            $("#mylikesTables").removeClass("active");
 
         }
+
 
         $('#allTables').click(function(){
             cleanAllClasses();
@@ -364,6 +426,7 @@
             $("#tablePremium").addClass("d-none");
             $("#tableLikes").addClass("d-none");
             $("#tableRecent").addClass("d-none");
+            $("#tableLikesUser").addClass("d-none");
         });
 
         $('#recentTables').click(function(){
@@ -374,6 +437,7 @@
             $("#tablePremium").addClass("d-none");
             $("#tableLikes").addClass("d-none");
             $("#tableRecent").addClass("d-block");
+            $("#tableLikesUser").addClass("d-none");
         });
 
         $('#likeTables').click(function(){
@@ -384,6 +448,7 @@
             $("#tablePremium").addClass("d-none");
             $("#tableLikes").addClass("d-block");
             $("#tableRecent").addClass("d-none");
+            $("#tableLikesUser").addClass("d-none");
         });
 
         $('#commentTables').click(function(){
@@ -394,6 +459,7 @@
             $("#tablePremium").addClass("d-none");
             $("#tableLikes").addClass("d-none");
             $("#tableRecent").addClass("d-none");
+            $("#tableLikesUser").addClass("d-none");
         });
 
         $('#premiumTables').click(function(){
@@ -404,6 +470,18 @@
             $("#tablePremium").addClass("d-block");
             $("#tableLikes").addClass("d-none");
             $("#tableRecent").addClass("d-none");
+            $("#tableLikesUser").addClass("d-none");
+        });
+
+        $('#mylikesTables').click(function(){
+            cleanAllClasses();
+            $("#mylikesTables").addClass("active");
+            $("#tableAll").addClass("d-none");
+            $("#tableComment").addClass("d-none");
+            $("#tablePremium").addClass("d-none");
+            $("#tableLikes").addClass("d-none");
+            $("#tableRecent").addClass("d-none");
+            $("#tableLikesUser").addClass("d-block");
         });
 
 

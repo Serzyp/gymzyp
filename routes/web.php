@@ -23,8 +23,24 @@ use Illuminate\Support\Facades\Validator;
 
 Auth::routes();
 
-//Vista Inicio
+//Vista Inicio con todas las tablas
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Vista Inicio con todas las tablas ordenadas de más reciente a más antiguas
+Route::get('/newTables', [App\Http\Controllers\HomeController::class, 'indexNewest'])->name('home.new');
+
+//Vista Inicio con todas las tablas comentadas de más comentarios a menos
+Route::get('/commentTables', [App\Http\Controllers\HomeController::class, 'indexComment'])->name('home.comment');
+
+//Vista Inicio con todas las tablas con likes de más likes a menos
+Route::get('/likeTables', [App\Http\Controllers\HomeController::class, 'indexLike'])->name('home.like');
+
+//Vista Inicio con todas las tablas premium
+Route::get('/premiumTables', [App\Http\Controllers\HomeController::class, 'indexPremium'])->name('home.premium');
+
+//Vista Inicio con todas las tablas a las que el usuario ha dado like
+Route::get('/userLikeTables', [App\Http\Controllers\HomeController::class, 'indexLikeUser'])->name('home.userlike');
+
 
 //Selecttor de lenguaje
 Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set_language'])->name('set_language');
