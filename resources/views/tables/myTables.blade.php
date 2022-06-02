@@ -8,8 +8,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <div class="card mb-3">
-                <a href="javascript:void(0)" class="text-center text-decoration-none" id="tableNewTables" style="color: grey"><h2 class="p-3 mb-0"><i class="fa-regular fa-square-plus"></i> {{ __('Add new table empty') }}</h2></a>
+            <div class="card mb-3 card-newtable">
+                <a href="javascript:void(0)" class="text-center text-decoration-none text-newtable" id="tableNewTables" ><h2 class="p-3 mb-0"><i class="fa-regular fa-square-plus"></i> {{ __('Add new table empty') }}</h2></a>
             </div>
         </div>
 

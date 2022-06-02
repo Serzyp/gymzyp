@@ -94,7 +94,7 @@ form .avatar{
     padding: 10px 25px;
     color: #ffffff;
     display: inline-block;
-    font: normal bold 15px "Open Sans", sans-serif;
+    font: normal bold 15px;
     text-align: center;
 }
 
@@ -214,3 +214,27 @@ body{
     color: #fff;
     text-decoration: none;
 }
+
+/* CSS para añadir una tabla nueva */
+
+.card-newtable{
+    background: none !important;
+    border: 5px solid #6766cc !important;
+    transition: .6s;
+}
+
+.card-newtable:hover{
+    background: #6766cc !important;
+    border: 5px solid #FFF !important;
+}
+
+.text-newtable{
+    color: #6766cc;
+    transition: .6s;
+}
+
+.text-newtable:hover{
+    color: #FFF;
+}
+
+/* https://uiverse.io/detail/fanishah/tame-goose-53 */

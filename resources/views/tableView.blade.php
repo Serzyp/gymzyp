@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="card h-100 px-0">
+                <div class="card h-100 px-0 mt-2">
                     <div class="card-header">
                         <h5 class="card-title mb-0 text-center">
                             {{ __('Likes') }}
@@ -122,7 +122,7 @@
         <div class="col-md-12 mb-2 pe-0">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title text-center">
+                    <h5 class="card-title text-center mb-0">
                         {{-- {{ __('Tabla de ejercicios') }} --}}
                         {{ $table->name }}
                     </h5>
