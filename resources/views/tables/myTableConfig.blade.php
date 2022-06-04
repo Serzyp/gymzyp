@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.app')
 
 @section('page_title')
@@ -7,27 +11,122 @@
 @section('content')
 
 <div class="container-fluid">
-    <div class="row m-2">
-        <div class="col-12 col-md-3 ">
-            <div class="imageExercises">
-                <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top" alt="...">
-            </div>
-            <div class="actionBox text-center m-1">
-                <a class="edit btn btn-primary btn-sm" id="editTable" href="javascript:void(0)" ><i class="fas fa-pen fa-2x"></i></a>
+    <script>
 
-                <a href="javascript:void(0)"  class="btn btn-danger btn-sm deleteTable"><i class="fas fa-trash-alt fa-2x"></i></a>
+        function refresh_likes(id){
+            var url = "{{ route('like.reload', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(response){
+                    $(".likeCount_"+id).html(response);
+                },
+                complete: function(){
+                    setTimeout( refresh_likes(id), 1000);
+                }
+            });
+        }
+    </script>
+    <div class="row m-2">
+        <div class="col-md-8 col-12 mb-2">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0 text-center">
+                        {{ $table->name }}
+                    </h5>
+                </div>
+
+                <div class="card-body pt-2 pb-1 text-center">
+                    <div class="imageExercises">
+                        <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top imagenTableBackground" alt="...">
+                    </div>
+                    <div class="actionBox text-center m-1 my-3">
+                        <a class="edit btn btn-primary btn-sm" id="editTable" href="javascript:void(0)" ><i class="fas fa-pen fa-2x"></i></a>
+
+                        <a href="javascript:void(0)"  class="btn btn-danger btn-sm deleteTable"><i class="fas fa-trash-alt fa-2x"></i></a>
+                    </div>
+                    <p>
+                        {{ $table->description }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-12 col-md-5 text-center">
-            <h1 class="text-break">{{ $table->name }}</h1>
-            <p class="text-break">{{ $table->description }}</p>
-        </div>
+
         <div class="col-12 col-md-3 text-center">
-            <h1>{{ __('User Details') }}</h1>
-            <h3>{{ $table->user->name }}</h3>
-            <p>{{ $table->user->email }}</p>
+
+            <div class="row">
+                <div class="card h-100 px-0">
+                    <div class="card-header w-100">
+                        <h5 class="card-title mb-0 text-center">
+                            {{ __('User Details') }}
+                        </h5>
+                    </div>
+
+                    <div class="card-body pt-2 pb-1 text-center justify-content-center">
+                        {{-- <h3>{{ $table->user->name }}</h3>
+                        <p>{{ $table->user->email }}</p> --}}
+                        <div class="m-4">
+                            @if($table->user->image)
+                                <img src="{{ route('user.avatar',$table->user->image) }}"
+                                class="rounded-circle img-fluid" style="width: 100px;  height: 100px;" />
+                            @else
+                                {{-- https://pixabay.com/images/id-3331256/ --}}
+                                <img src="{{ asset('img/DefaultUser.png') }}"
+                                class="rounded-circle img-fluid" style="width: 100px; height: 100px;" />
+
+                            @endif
+                        </div>
+                            <h4 class="mb-2">{{ $table->user->name }}</h4>
+                            <p class="text-muted mb-2">{{ $table->user->email }}</p>
+
+                            <a class="btn btn-primary btn-rounded btn-lg mb-2" href='mailto:{{ $table->user->email }}'>
+                            {{ __("Message now") }}
+                            </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card h-100 px-0 mt-2">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0 text-center">
+                            {{ __('Likes') }}
+                        </h5>
+                    </div>
+
+                    <div class="card-body pt-2 pb-1">
+                        <div class="info-box">
+                            {{-- Averiguar cuantos likes tiene la tabla y si el usuaria que esta viendo la pagina ha dado o no like --}}
+                            {{ $userlike = false; }}
+                            @foreach ($table->likes as $like)
+                                @if ($like->user->id == Auth::user()->id)
+                                    <?php $userlike = true; ?>
+                                @endif
+                            @endforeach
+
+                            @if ($userlike)
+                                <a class="btn-dislike info-box-icon btn bg-danger" data-id="{{ $table->id }}">
+                                <i class="ico{{ $table->id }} fa-solid fa-heart"></i>
+                            @else
+                                <a class="btn-like info-box-icon btn bg-danger" data-id="{{ $table->id }}">
+                                <i class="ico{{ $table->id }} fa-regular fa-heart"></i>
+                            @endif
+                            </a>
+
+                            {{-- <span class="info-box-icon bg-danger"><i class="fa-regular fa-heart"></i></span> --}}
+                            <div class="info-box-content">
+                                <span class="info-box-text">Likes</span>
+                                {{-- <span class="">99999</span> --}}
+                                <span class="info-box-number likeCount_{{ $table->id }}"></span>
+
+                            </div>
+                            <script>refresh_likes({{ $table->id }});</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-md-1 text-center">
+        <div class="col-12 col-md-1 my-4 text-center">
             <a class="btn btn-primary btn-lg active" href="{{ route('table.index') }}">{{ __('Back') }}</a>
         </div>
     </div>
@@ -65,6 +164,7 @@
         </div>
     </div>
     <br>
+
 <!-- ZONA DE COMENTARIOS -->
     <div class="col-md-12">
         <div class="card">
@@ -76,32 +176,36 @@
             <div class="card-body">
 
                 @foreach ($table->comments as $comment)
-                <div class="comment-block">
-                    <div class="d-flex justify-content-center">
-                    <a class="btn fs-2 mx-4 d-flex justify-content-center" href="#">
-                    @if($comment->user->image)
-                        <img class="comment-profile" alt="Profile image" src="{{ route('user.avatar',$comment->user->image) }}"> - {{ $comment->user->nick }}</a>
-                    @else
-                        @if($comment->user->nick)
-                            {{ $comment->user->nick }}</a>
-                        @else
-                            {{ $comment->user->name }}</a>
-                        @endif
-                    @endif
-                    </div>
 
-                    <div class="comment-body mt-4">
-
-                        <p>{{ $comment->content }}</p>
-
-                        <div class="btn-group">
-                            {{-- <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa-solid fa-pen-to-square"></i></a> --}}
-                            @if ($comment->user_id == Auth::user()->id || Auth::user()->role == 'admin' || $comment->table->user_id == Auth::user()->id)
-                                <a class="btn btn-sm btn-default btn-hover-danger" href="{{ route('comment.delete',$comment->id); }}"><i class="fa-solid fa-trash-can"></i></a>
+                    <div class="d-flex mt-4">
+                        <div class="flex-shrink-0">
+                            @if($comment->user->image)
+                                <img src="{{ route('user.avatar',$comment->user->image) }}" class="rounded-circle" alt="Sample Image" style="width: 60px; height: 60px; border: 1px solid grey;">
+                            @else
+                                <img src="{{ asset('img/DefaultUser.png') }}" class="rounded-circle" alt="Sample Image" style="width: 60px; height: 60px; border: 1px solid grey;">
                             @endif
+
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            @if($comment->user->nick)
+                                <h5>{{ $comment->user->nick }}
+                            @else
+                                <h5>{{ $comment->user->name }}
+                            @endif
+                                <small class="text-muted">
+                                    <i>{{ __('Posted on ') }}{{  Carbon::parse($comment->created_at)->formatLocalized('%d-%m-%Y'); }}</i>
+                                </small>
+                                @if ($comment->user_id == Auth::user()->id || Auth::user()->role == 'admin' || $comment->table->user_id == Auth::user()->id)
+                                    <a class="btn-delete" href="{{ route('comment.delete',$comment->id); }}"><i class="fa-solid fa-trash-can"></i></a>
+                                @endif
+                            </h5>
+                            <p>{{ $comment->content }}</p>
                         </div>
                     </div>
-                </div>
+                    @if(!$loop->last)
+                        <hr>
+                    @endif
+
                 @endforeach
             </div>
             <hr>
@@ -403,9 +507,6 @@
             datatable.draw(false);
         });
 
-
-
-
         clean_fields();
 
         function clean_fields() {
@@ -419,9 +520,7 @@
             $('#exerciseModal').modal('show');
         });
 
-
         // AÑADIR UN EJERCICIO //
-
 
         $('#exercisesSubmitForm').click(function(e) {
             /** Problemas con serialize y default form upload
@@ -699,7 +798,7 @@
 
         });
 
-                // EDITAR UNA TABLA //
+        // EDITAR UNA TABLA //
 
         $('#tablesSubmitForm').click(function(e) {
             /** Problemas con serialize y default form upload
@@ -879,6 +978,69 @@
                 });
             }
         });
+
+
+        // Botón de like
+        function like(){
+            $('.btn-like').unbind('click').click(function(){
+                console.log('like');
+                $(this).addClass('btn-dislike').removeClass('btn-like');
+
+                var id = $(this).data('id');
+                console.log(id);
+                var url = "{{ route('like.save', ':table_id') }}";
+                    url = url.replace(':table_id', id);
+
+                var classr = ".ico"+id;
+                console.log(classr);
+                $(classr).addClass('fa-solid').removeClass('fa-regular');
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response){
+                        if(response.like){
+                            console.log('Has dado like a la tabla');
+
+                            $("#like").load(" #like-"+id);
+                        }else{
+                            console.log('Error al dar like');
+                        }
+                    }
+                });
+                dislike();
+            });
+        }
+        like();
+
+        // Botón de dislike
+        function dislike(){
+            $('.btn-dislike').unbind('click').click(function(){
+                $(this).addClass('btn-like').removeClass('btn-dislike');
+
+                var id = $(this).data('id');
+                console.log(id);
+                var url = "{{ route('like.delete', ':table_id') }}";
+                    url = url.replace(':table_id', id);
+                    var classr = ".ico"+id;
+                console.log(classr);
+                $(classr).addClass('fa-regular').removeClass('fa-solid');
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response){
+                        if(response.like){
+                            console.log('Has dado dislike a la tabla');
+                            $("#like").load(" #like-"+id);
+                        }else{
+                            console.log('Error al dar dislike');
+                        }
+                    }
+                });
+
+                like();
+            });
+        }
+	    dislike();
 
     });
 

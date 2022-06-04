@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.app')
 
 @section('page_title')
@@ -29,13 +33,13 @@
             <div class="card h-100">
                 <div class="card-header">
                     <h5 class="card-title mb-0 text-center">
-                        {{ __('Titulo de la tabla') }}
+                        {{ $table->name }}
                     </h5>
                 </div>
 
                 <div class="card-body pt-2 pb-1 text-center">
                     <div class="imageExercises">
-                        <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top" alt="...">
+                        <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top imagenTableBackground" alt="...">
                     </div>
                     <p>
                         {{ $table->description }}
@@ -201,32 +205,36 @@
                 <div class="card-body">
 
                     @foreach ($table->comments as $comment)
-                    <div class="comment-block">
-                        <div class="d-flex justify-content-center">
-                        <a class="btn fs-2 mx-4 d-flex justify-content-center" href="#">
-                            @if($comment->user->image)
-                                <img class="comment-profile" alt="Profile image" src="{{ route('user.avatar',$comment->user->image) }}"> - {{ $comment->user->nick }}</a>
-                            @else
-                                @if($comment->user->nick)
-                                    {{ $comment->user->nick }}</a>
+
+                        <div class="d-flex mt-4">
+                            <div class="flex-shrink-0">
+                                @if($comment->user->image)
+                                    <img src="{{ route('user.avatar',$comment->user->image) }}" class="rounded-circle" alt="Sample Image" style="width: 60px; height: 60px; border: 1px solid grey;">
                                 @else
-                                    {{ $comment->user->name }}</a>
+                                    <img src="{{ asset('img/DefaultUser.png') }}" class="rounded-circle" alt="Sample Image" style="width: 60px; height: 60px; border: 1px solid grey;">
                                 @endif
-                            @endif
-                        </div>
 
-                        <div class="comment-body mt-4">
-
-                            <p>{{ $comment->content }}</p>
-
-                            <div class="btn-group">
-                                {{-- <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa-solid fa-pen-to-square"></i></a> --}}
-                                @if ($comment->user_id == Auth::user()->id || Auth::user()->role == 'admin' || $comment->table->user_id == Auth::user()->id)
-                                    <a class="btn btn-sm btn-default btn-hover-danger" href="{{ route('comment.delete',$comment->id); }}"><i class="fa-solid fa-trash-can"></i></a>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                @if($comment->user->nick)
+                                    <h5>{{ $comment->user->nick }}
+                                @else
+                                    <h5>{{ $comment->user->name }}
                                 @endif
+                                    <small class="text-muted">
+                                        <i>{{ __('Posted on ') }}{{  Carbon::parse($comment->created_at)->formatLocalized('%d-%m-%Y'); }}</i>
+                                    </small>
+                                    @if ($comment->user_id == Auth::user()->id || Auth::user()->role == 'admin' || $comment->table->user_id == Auth::user()->id)
+                                        <a class="btn-delete" href="{{ route('comment.delete',$comment->id); }}"><i class="fa-solid fa-trash-can"></i></a>
+                                    @endif
+                                </h5>
+                                <p>{{ $comment->content }}</p>
                             </div>
                         </div>
-                    </div>
+                        @if(!$loop->last)
+                            <hr>
+                        @endif
+
                     @endforeach
                 </div>
                 <hr>

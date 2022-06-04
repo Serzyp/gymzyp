@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-3 col-12 mt-4">
             <div class="d-flex flex-column align-items-stretch bg-white">
-                <a href="#" class="d-flex align-items-center flex-shrink-0 p-3 text-decoration-none justify-content-center border-bottom">
+                <a class="d-flex align-items-center flex-shrink-0 p-3 text-decoration-none justify-content-center border-bottom" id="titleCat">
                   <span class="fs-5 fw-semibold">{{ __('Categories') }}</span>
                 </a>
                 <div class="list-group list-group-flush border-bottom scrollarea">
