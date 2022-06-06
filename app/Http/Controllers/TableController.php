@@ -166,7 +166,7 @@ class TableController extends Controller
         $table = Table::find($id);
         $exercises = Exercise::join('day', 'day.id', '=', 'exercise.day_id')->select('exercise.*','day.day','day.moment')->where('exercise.table_id','=',$id)->orderBy('day.id')->get();
 
-        if($table->paid_mode == 1 && Auth::user()->role = 'user'){
+        if($table->paid_mode == 1 && Auth::user()->role == 'user'){
             return view('paypal.payment');
         }else{
             return view('tableView',compact('table','exercises'));

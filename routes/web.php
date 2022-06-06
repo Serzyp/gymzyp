@@ -127,3 +127,6 @@ Route::get('/table/show/{id}',[App\Http\Controllers\TableController::class,'show
 
 //Exportación
 Route::post('/export',[App\Http\Controllers\ExcelExportController::class,'table'])->name('table.export');
+
+//Centro de ayuda
+Route::get('/info',[App\Http\Controllers\InfoController::class,'index'])->name('info.index');

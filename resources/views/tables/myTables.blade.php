@@ -44,7 +44,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $myTable->name }}</h5>
-                                <p class="card-text">{{ substr($myTable->description,0,130);}}... </p>
+                                <p class="card-text">{!! substr($myTable->description,0,130);!!} </p>
                                 <p class="card-text">
                                     <div id="like-{{ $myTable->id }}">
                                         <a href="{{ route('table.exercises', $myTable->id) }}" class="btn btn-primary">{{ __('Show more') }}</a>
@@ -119,7 +119,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>{{ __('Description') }}</label>
-                            <textarea name="description" id="description" class="form-control" cols="170" rows="5"></textarea>
+                            <textarea name="description" id="description" class="form-control summernote" cols="170" rows="5"></textarea>
                             <span class="text-danger error-text description_error"></span>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        $('.summernote').summernote();
         clean_fields();
 
         function clean_fields() {

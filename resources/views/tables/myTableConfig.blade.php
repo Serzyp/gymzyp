@@ -46,9 +46,9 @@
 
                         <a href="javascript:void(0)"  class="btn btn-danger btn-sm deleteTable"><i class="fas fa-trash-alt fa-2x"></i></a>
                     </div>
-                    <p>
-                        {{ $table->description }}
-                    </p>
+                    <div class="text-start">
+                        {!! $table->description !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,7 +127,7 @@
             </div>
         </div>
         <div class="col-12 col-md-1 my-4 text-center">
-            <a class="btn btn-primary btn-lg active" href="{{ route('table.index') }}">{{ __('Back') }}</a>
+            <a class="btn btn-primary btn-lg" href="{{ route('table.index') }}">{{ __('Back') }}</a>
         </div>
     </div>
 
@@ -321,7 +321,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label>{{ __('Description') }}</label>
-                                <textarea name="description" id="description" class="form-control" cols="170" rows="5"></textarea>
+                                <textarea name="description" id="description" class="form-control summernote" cols="170" rows="5"></textarea>
                                 <span class="text-danger error-text description_error"></span>
                             </div>
                         </div>
@@ -375,6 +375,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        $('.summernote').summernote();
+
         var url = '{{ route('table.exerciseDatatable',$codTable) }}';
         var datatable = $('#datatable').DataTable({
             @if (App::isLocale('es'))
@@ -768,7 +771,8 @@
                         $('#id_table').val(id).change();
                         $('#user_id').val(data.table.user_id).change();
                         $('#name').val(data.table.name);
-                        $('#description').val(data.table.description);
+                        $('#description').summernote("code", data.table.description);
+                        // $('#description').val(data.table.description);
                         $('#paid_mode').val(data.table.paid_mode).change();
 
                         $('#tablesModalTable').modal('show');

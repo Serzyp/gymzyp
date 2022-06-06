@@ -42,7 +42,7 @@
                         <img src="{{ route('table.image',['filename' => $table->image_path]) }}" class="img-thumbnail rounded-end p-2 card-img-top imagenTableBackground" alt="...">
                     </div>
                     <p>
-                        {{ $table->description }}
+                        {!! $table->description !!}
                     </p>
                 </div>
             </div>
