@@ -1,6 +1,8 @@
 
 @extends('layouts.app')
 
+{{-- ESTA POR VER SI SE REALIZA UN PERFIL DE USUARIO CON LA CAANTIDAD DE TABLAS QUE TIENE Y LOS LIKES TOTALES --}}
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -24,11 +26,6 @@
 
             </div>
 
-            <div class="clearfix"></div>
-
-            @foreach ($user->images as $image)
-                @include('includes.image',['image'=>$image])
-            @endforeach
 
         </div>
     </div>
