@@ -9,6 +9,7 @@ class Day extends Model
 {
     use HasFactory;
 
+    protected $connection = 'mysql';
     protected $table = 'day';
 
     // Relación uno a muchos

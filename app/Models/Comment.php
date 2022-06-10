@@ -9,6 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $connection = 'mysql';
     protected $table = 'comments';
 
 	// Relación de Muchos a Uno
