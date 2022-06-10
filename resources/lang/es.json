@@ -795,5 +795,18 @@
     "Zambia": "Zambia",
     "Zimbabwe": "Zimbabwe",
     "Zip / Postal Code": "Zip / Código postal",
-    "Åland Islands": "Islas Åland"
+    "Åland Islands": "Islas Åland",
+
+    "Monday":"Lunes",
+    "Tuesday":"Martes",
+    "Wednesday":"Miercoles",
+    "Thursday":"Jueves",
+    "Friday":"Viernes",
+    "Saturday":"Sabado",
+    "Sunday":"Domingo",
+
+    "Morning":"Mañana",
+    "Afternoon":"Tarde",
+    "Night":"Noche"
+
 }

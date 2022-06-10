@@ -73,7 +73,7 @@ class ExerciseController extends Controller
 
                 $header .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
-                $header .= $row->day.' - '.$row->moment;
+                $header .= __($row->day).' - '.__($row->moment);
 
                 return $header;
             })
