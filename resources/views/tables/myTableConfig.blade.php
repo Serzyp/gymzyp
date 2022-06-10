@@ -520,6 +520,8 @@
 
         $('#addDay').click(function() {
             clean_fields();
+            $('#modalHeadingExercise').html('{{ __('Add Exercise') }}');
+            $('#exercisesSubmitForm').html('{{ __('Add') }}');
             $('#exerciseModal').modal('show');
         });
 
@@ -640,8 +642,8 @@
         $('body').on('click', '.editExercise', function() {
             var idExercise = $(this).data("idexercise");
             $('#exerciseModal').trigger("reset");
-            $('#modalHeadingExercise').html("Edit exercise");
-            $('#exercisesSubmitForm').html("Edit exercise");
+            $('#modalHeadingExercise').html('{{ __("Edit exercise") }}');
+            $('#exercisesSubmitForm').html('{{ __("Edit exercise") }}');
             clean_fields();
             $('#id').val(idExercise);
             var url = "{{ route('exercises.edit', ':id') }}";

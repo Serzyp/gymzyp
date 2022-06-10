@@ -142,9 +142,9 @@
                                     <th colspan="3">{{ $exercise->day }} - {{ $exercise->moment }}</th>
                                 </tr>
                                 <tr>
-                                    <th>Ejercicio</th>
-                                    <th>Series</th>
-                                    <th>Repeticiones</th>
+                                    <th>{{ __("Exercise") }}</th>
+                                    <th>{{ __("Sets") }}</th>
+                                    <th>{{ __("Reps") }}</th>
                                 </tr>
                                 <tr>
                                     <td>{{ $exercise->content }}</td>
@@ -160,9 +160,9 @@
                                         <th colspan="3">{{ $exercise->day }} - {{ $exercise->moment }}</th>
                                     </tr>
                                     <tr>
-                                        <th>Ejercicio</th>
-                                        <th>Series</th>
-                                        <th>Repeticiones</th>
+                                        <th>{{ __("Exercise") }}</th>
+                                        <th>{{ __("Sets") }}</th>
+                                        <th>{{ __("Reps") }}</th>
                                     </tr>
                                     <tr>
                                         <td>{{ $exercise->content }}</td>
