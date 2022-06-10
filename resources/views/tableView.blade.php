@@ -246,7 +246,7 @@
                         <textarea class="form-control" rows="2" {{ $errors->has('content') ? 'is-invalid' : '' }}" name="content"></textarea>
 
                         <div class="mt-2 clearfix">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-pencil fa-fw"></i> Share</button>
+                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-pencil fa-fw"></i> {{ __('Share') }}</button>
                         </div>
                     </form>
                 </div>
