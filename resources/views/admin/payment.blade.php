@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Payments List</h1>
 @stop
-
+{{-- Vista de los pagos --}}
 @section('plugins.Datatables', true)
 @section('content')
 <div class="row">

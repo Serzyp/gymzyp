@@ -45,16 +45,19 @@ class User extends Authenticatable
 		return $this->hasMany('App\Models\Table');
 	}
 
+    //Imagen ADMINLTE
     public function adminlte_image()
     {
         return route('user.avatar',['filename' => Auth::user()->image]);
     }
 
+    //Descripción ADMINLTE
     public function adminlte_desc()
     {
         return 'That\'s a nice guy';
     }
 
+    //Perfil ADMINLTE
     public function adminlte_profile_url()
     {
         return 'profile/username';

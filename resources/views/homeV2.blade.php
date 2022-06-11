@@ -6,7 +6,7 @@
 
 @section('content')
 
-
+{{-- ESTA VISTA YA NO SE USA --}}
 
 <div class="container">
     <div class="row">

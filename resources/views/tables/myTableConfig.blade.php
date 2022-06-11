@@ -289,7 +289,7 @@
         </div>
     </div>
 
-        <!-- Modal -->
+        <!-- Modal de tablas-->
     <div class="modal fade" id="tablesModalTable" data-backdrop="static">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -511,7 +511,7 @@
         });
 
         clean_fields();
-
+        // Limpiar los inputs
         function clean_fields() {
             $('#exerciseFormBody').trigger("reset");
             resetErrorMsg();
@@ -623,7 +623,7 @@
 
             });
         });
-
+        // Mostrar errores
         function printErrorMsg(msg) {
             $('.error-text').text('');
             $.each(msg, function(key, value) {

@@ -8,6 +8,7 @@
 
 <div class="container">
     <div class="row">
+        {{-- Menu de filtro --}}
         <div class="col-md-3 col-12 mt-4">
             <div class="d-flex flex-column align-items-stretch bg-white">
                 <a class="d-flex align-items-center flex-shrink-0 p-3 text-decoration-none justify-content-center border-bottom" id="titleCat">
@@ -48,6 +49,7 @@
             </div>
         </div>
 
+        {{-- COMPROBAR QUE NO SEA LA VERSIÓN PREMIUM --}}
         @if(Request::route()->getName() == 'home' || Request::route()->getName() == 'home.comment' || Request::route()->getName() == 'home.new' || Request::route()->getName() == 'home.like' || Request::route()->getName() == 'home.userlike')
             <div class="col-md-8 col-12 mt-4">
                 <div class="card h-100">
@@ -111,9 +113,9 @@
                     </div>
                 </div>
             </div>
-        @else
+        @else           {{-- EN CASO DE SER PERMIUM --}}
             <div class="col-md-8 col-12 mt-4">
-                @if(auth()->user()->role == 'premium' || auth()->user()->role == 'admin')
+                @if(auth()->user()->role == 'premium' || auth()->user()->role == 'admin') {{-- MOSTRAMOS TABLA SI ES PREMIUM O ADMIN --}}
                     <div class="card h-100">
                         <div class="card-header">
                             <h5 class="card-title mb-0 text-center">
@@ -164,7 +166,7 @@
                         </div>
                     </div>
 
-                @else
+                @else                           {{-- SI NO ES PREMIUM MOSTRAMOS UN BLOQUEO --}}
                     <div class="card h-100">
                         <div class="card-header">
                             <h5 class="card-title mb-0 text-center">

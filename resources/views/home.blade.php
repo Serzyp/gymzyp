@@ -3,7 +3,7 @@
 @section('page_title')
 {{ __('Index') }}
 @endsection
-
+{{-- ESTA VISTA YA NO SE USA --}}
 @section('content')
 <div class="container">
     <div class="row">

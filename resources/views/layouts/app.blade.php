@@ -174,13 +174,6 @@
                                 </li>
 
                             @endif
-
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="{{ route('image.create') }}">{{ __('Upload Image') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('like.index') }}">{{ __('My likes') }}</a>
-                            </li> --}}
                             <li>
                                 <div class="container-avatar">
                                     @if (Auth::user()->image)

@@ -8,6 +8,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
+        {{-- Centro de ayuda zona informativa --}}
         <div class="col-md-10 col-12 mt-4">
             <div class="card h-100">
                 <div class="card-header">
@@ -15,7 +16,6 @@
                         {{ __('Help Center') }}
                     </h5>
                 </div>
-
                 <div class="card-body text-center p-3">
                     <h2>{{ __('General Information') }}</h2>
                     <p>{{ __('This page has been created for any user to share anything about their workouts or to find inspiration from other people.') }}</p>
@@ -27,6 +27,7 @@
 
             </div>
         </div>
+        {{-- Zona de soporte --}}
         <div class="col-md-6 col-12 my-3">
             <div class="card mb-3">
                 <div class="card-header">

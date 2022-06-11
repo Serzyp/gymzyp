@@ -15,7 +15,7 @@
                         {{ session('message') }}
                     </div>
                 @endif
-
+                {{--  Configuracion de usuario  --}}
                 <div class="card">
                     <div class="card-header">{{ __('My Account Settings') }}</div>
 

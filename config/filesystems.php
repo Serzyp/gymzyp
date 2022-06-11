@@ -28,6 +28,8 @@ return [
     |
     */
 
+    //Habilitamos dos discos uno para las imagenes del usuario y otra para las de las tablas
+
     'disks' => [
 
         'local' => [

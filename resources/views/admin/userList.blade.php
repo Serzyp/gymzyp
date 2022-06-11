@@ -6,6 +6,8 @@
     <h1>User List</h1>
 @stop
 
+{{-- Listado de los usuarios --}}
+
 @section('plugins.Datatables', true)
 @section('content')
 <div class="row">

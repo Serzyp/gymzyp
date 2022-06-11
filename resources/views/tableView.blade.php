@@ -11,6 +11,7 @@
 @section('content')
 
 <div class="container">
+    {{-- Actualización de likes --}}
     <script>
 
         function refresh_likes(id){
@@ -29,6 +30,7 @@
         }
     </script>
     <div class="row">
+        {{-- Información de la tabla --}}
         <div class="col-md-8 col-12 mt-4 mb-2">
             <div class="card h-100">
                 <div class="card-header">
@@ -47,6 +49,7 @@
                 </div>
             </div>
         </div>
+        {{-- Información usuario --}}
         <div class="col-md-4 col-12 mt-4 mb-2">
             <div class="row">
                 <div class="card h-100 px-0">
@@ -79,6 +82,7 @@
                     </div>
                 </div>
             </div>
+            {{-- Likes --}}
             <div class="row">
                 <div class="card h-100 px-0 mt-2">
                     <div class="card-header">
@@ -195,6 +199,7 @@
         </div>
     </div>
     <div class="row">
+        {{-- Zona de comentarios --}}
         <div class="col-md-12 mb-2 pe-0">
             <div class="card">
                 <div class="card-header">
@@ -238,6 +243,7 @@
                     @endforeach
                 </div>
                 <hr>
+                {{-- Zona de escribir comentarios --}}
                 <div class="card-body">
                     <form action="{{ route('comment.save') }}" method="post">
                         @csrf

@@ -109,6 +109,7 @@
 
             },
             onError: function (err) {
+                location.href = "{{ route('paypal.failed') }}";
                 console.log(err);
             }
         });

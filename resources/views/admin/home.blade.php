@@ -10,6 +10,8 @@
 @section('content')
     <p>This zone is only for admin. Here you can see several statistics about the website.</p>
 
+    {{-- Zona de grafico y estadisticas --}}
+
     @section('plugins.Chartjs', true)
     <div class="row justify-content-center">
         <div class="col-xl-6 col-md-12">

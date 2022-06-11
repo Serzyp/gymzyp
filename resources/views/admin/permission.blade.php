@@ -34,7 +34,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal de permisos -->
 <div class="modal fade" id="usersModalRol" data-backdrop="static">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
