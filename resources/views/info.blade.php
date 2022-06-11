@@ -18,10 +18,10 @@
 
                 <div class="card-body text-center p-3">
                     <h2>{{ __('General Information') }}</h2>
-                    <p>{{ __('This page has been created for any user to share everything about their workouts or who wants to find inspiration from other people.') }}</p>
+                    <p>{{ __('This page has been created for any user to share anything about their workouts or to find inspiration from other people.') }}</p>
                     <p>{{ __('Everyone can benefit from the website, you can create, edit and view training charts, also in the chart description you can add your tips or diets.') }}</p>
                     <h2>{{ __('Advance Information') }}</h2>
-                    <p>{{ __('If you have any doubts about how to use the website you can see everything that is offered and how the website works in the user manual.') }}</p>
+                    <p>{{ __('If you have any doubts about how to use the website you can check the user manual.') }}</p>
                     <a href="#" class="btn btn-info">{{ __('Manual User') }}</a>
                 </div>
 

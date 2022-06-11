@@ -72,7 +72,7 @@
                                 class="rounded-circle img-fluid" style="width: 100px;  height: 100px;" />
                             @else
                                 {{-- https://pixabay.com/images/id-3331256/ --}}
-                                <img src="{{ asset('img/DefaultUser.png') }}"
+                                <img src="{{ asset('img/DefaultUserV2.jpg') }}"
                                 class="rounded-circle img-fluid" style="width: 100px; height: 100px;" />
 
                             @endif
@@ -81,7 +81,7 @@
                             <p class="text-muted mb-2">{{ $table->user->email }}</p>
 
                             <a class="btn btn-primary btn-rounded btn-lg mb-2" href='mailto:{{ $table->user->email }}'>
-                            {{ __("Message now") }}
+                            {{ __("Message") }}
                             </a>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                             @if($comment->user->image)
                                 <img src="{{ route('user.avatar',$comment->user->image) }}" class="rounded-circle" alt="Sample Image" style="width: 60px; height: 60px; border: 1px solid grey;">
                             @else
-                                <img src="{{ asset('img/DefaultUser.png') }}" class="rounded-circle" alt="Sample Image" style="width: 60px; height: 60px; border: 1px solid grey;">
+                                <img src="{{ asset('img/DefaultUserV2.jpg') }}" class="rounded-circle" alt="Sample Image" style="width: 60px; height: 60px; border: 1px solid grey;">
                             @endif
 
                         </div>
