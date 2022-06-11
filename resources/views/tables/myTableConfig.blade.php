@@ -689,7 +689,7 @@
 
         $('body').on('click', '.deleteExercise', function() {
             var idExercise = $(this).data("idexercise");
-            var confir = confirm("Are you sure you want to delete the record?");
+            var confir = confirm('{{ __("Are you sure you want to delete the record?") }}');
             if (confir == true) {
                 var url = "{{ route('exercises.destroy', ':id') }}";
                 url = url.replace(':id', idExercise);
@@ -912,7 +912,7 @@
 
         $('body').on('click', '.deleteTable', function() {
             var idTable = "{{ $table->id }}";
-            var confir = confirm("Are you sure you want to delete the record?");
+            var confir = confirm('{{ __("Are you sure you want to delete the record?") }}');
             if (confir == true) {
                 var url = "{{ route('table.destroy', ':id') }}";
                 url = url.replace(':id', idTable);

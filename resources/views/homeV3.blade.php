@@ -183,7 +183,7 @@
                                 <p>{{ __('If you want to purchase the pro version, click on this button.') }}</p>
                             </div>
                             <div class="d-flex justify-content-center mt-3 mb-3">
-                                <a href="{{ route('paypal.index') }}" id="features" class="btn">Buy premium features</a>
+                                <a href="{{ route('paypal.index') }}" id="features" class="btn">{{ __('Buy premium features') }}</a>
                             </div>
                         </div>
                     </div>

@@ -158,7 +158,7 @@
                             @if (Auth::user()->role == 'user')
                                 <a class="btnPremium me-4" href="{{ route('paypal.index') }}">
                                     <i class="fa-solid fa-crown crown"></i>
-                                    Unlock Premium
+                                    {{ __('Unlock Premium') }}
                                 </a>
                             @endif
                             <li class="nav-item">
