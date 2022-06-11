@@ -18,6 +18,7 @@ class Language
      */
     public function handle(Request $request, Closure $next)
     {
+        //Seteamos en funcion del idioma
         if(session('applocale')){
             $configLanguage = config('languages')[session('applocale')];
             setlocale(LC_TIME, $configLanguage[1] . '.utf8');

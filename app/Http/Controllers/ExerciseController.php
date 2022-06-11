@@ -41,6 +41,7 @@ class ExerciseController extends Controller
         }
     }
 
+    // Funcion para mostrar Datatables
     public function exerciseDatatable($cod){
         if (request()->ajax()) {
             return Datatables::of(Exercise::join('day', 'day.id', '=', 'exercise.day_id')
@@ -64,11 +65,9 @@ class ExerciseController extends Controller
             ->addColumn('headerButtons', function ($row) {
 
                 $header = '';
-
+                // Posibilidad de crear, editar o eliminar dia completo NO HABILITADO
                 // $header .= '&nbsp;&nbsp;<a class="btn btn-success btn-sm createNewExercise" href="javascript:void(0)"> <i class="fas fa-plus"></i></a>';
-
                 // $header .= '&nbsp;&nbsp;<a class="edit btn btn-primary btn-sm editDay"  href="javascript:void(0)" ><i class="fas fa-pen"></i></a>';
-
                 // $header .= '&nbsp;&nbsp;<a href="javascript:void(0)"  class="btn btn-danger btn-sm deleteDay"><i class="fas fa-trash-alt"></i></a>';
 
                 $header .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -83,6 +82,7 @@ class ExerciseController extends Controller
 
     }
 
+    // Crear o editar un ejercicio
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [
@@ -106,7 +106,6 @@ class ExerciseController extends Controller
 
             try {
                 DB::beginTransaction();
-
 
                 $exercise = Exercise::updateOrCreate(
                     ['id' => $request->id],$data
@@ -151,6 +150,7 @@ class ExerciseController extends Controller
         }
     }
 
+    //Mandar informacion de un ejercicio para editarla
     public function edit($id){
 
         if (request()->ajax()) {
@@ -161,6 +161,7 @@ class ExerciseController extends Controller
 
     }
 
+    //Eliminar ejercicio
     public function destroy($id){
         try {
             DB::beginTransaction();

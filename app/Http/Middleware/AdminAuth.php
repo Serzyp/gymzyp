@@ -16,6 +16,7 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
+        //Comprobar si el usuario tiene rol admin
         if(auth()->check()){
             if(auth()->user()->role == 'admin'){
                 return $next($request);

@@ -20,6 +20,8 @@ class AdminController extends Controller
         $this->middleware('auth');
         $this->middleware('auth.admin');
     }
+
+    //Ver vista admin
     public function index(){
         $contUser = User::all()->count();
         $contComment = Comment::all()->count();

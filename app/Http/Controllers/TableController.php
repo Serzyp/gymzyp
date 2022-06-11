@@ -38,6 +38,7 @@ class TableController extends Controller
         return view('tables.myTables',compact('myTables'));
     }
 
+    //Crear o editar una tabla
     public function store(Request $request){
         //Usuario identificado
         $user = Auth::user();
@@ -126,6 +127,7 @@ class TableController extends Controller
 
     }
 
+    //Mandar datos de la tabla a editar
     public function edit($id){
 
         if (request()->ajax()) {
@@ -135,6 +137,7 @@ class TableController extends Controller
         }
     }
 
+    //Eliminar tabla
     public function destroy($id){
         try {
             DB::beginTransaction();
@@ -157,11 +160,13 @@ class TableController extends Controller
 
     }
 
+    //Mostrar imagen de la tabla
     public function getImage($filename){
         $file = Storage::disk('tables')->get($filename);
         return new Response($file);
     }
 
+    //Visualizar tabla a no ser de que sea de pago y no seas premium
     public function show($id){
         $table = Table::find($id);
         $exercises = Exercise::join('day', 'day.id', '=', 'exercise.day_id')->select('exercise.*','day.day','day.moment')->where('exercise.table_id','=',$id)->orderBy('day.id')->get();

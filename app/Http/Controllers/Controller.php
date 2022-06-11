@@ -11,6 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    //Seleccion de idioma
 
     public function set_language($language){
         if(array_key_exists($language, config('languages'))){

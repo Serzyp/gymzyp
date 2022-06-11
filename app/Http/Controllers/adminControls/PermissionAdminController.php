@@ -36,6 +36,7 @@ class PermissionAdminController extends Controller
         return view('admin.permission',compact('userList'));
     }
 
+    // Funcion para mostrar Datatables
     public function getDatatable(){
         if (request()->ajax()) {
             return Datatables::of(User::all())
@@ -50,7 +51,7 @@ class PermissionAdminController extends Controller
             ->make(true);
         }
     }
-
+    //Devolver datos del user
     public function edit($id){
         if (request()->ajax()) {
             return response()->json(
@@ -58,7 +59,7 @@ class PermissionAdminController extends Controller
             );
         }
     }
-
+    //Editar rol del user
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [

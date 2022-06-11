@@ -34,6 +34,8 @@ class UserAdminController extends Controller
         return view('admin.userList',compact('userList'));
     }
 
+
+    // Funcion para mostrar Datatables
     public function userDatatable(){
         if (request()->ajax()) {
             return Datatables::of(User::all())

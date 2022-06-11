@@ -32,6 +32,7 @@ class PaymentsAdminController extends Controller
         return view('admin.payment',compact('paymentList'));
     }
 
+    // Funcion para mostrar Datatables
     public function getDatatable(){
         if (request()->ajax()) {
             return Datatables::of(Payment::all())

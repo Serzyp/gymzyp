@@ -46,7 +46,7 @@ class PayPalController extends Controller
         return view('paypal.failedPayment');
     }
 
-
+    // Recoger token de la API
     private function getAccessToken(){
         $response = $this->client->request('POST', '/v1/oauth2/token', [
                 'headers' => [
@@ -65,6 +65,8 @@ class PayPalController extends Controller
     }
 
     // https://api-m.sandbox.paypal.com/v2/checkout/orders
+
+    // Realizar el proceso del pago
     public function process($order_id,Request $request)
     {
 
@@ -120,8 +122,6 @@ class PayPalController extends Controller
         }else{
             return false;
         }
-
-
 
     }
 

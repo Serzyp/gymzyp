@@ -19,15 +19,16 @@ class LikeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    //Funcion de actualización UNICAMENTE SE BUSCA LA CANTIDAD DE LIKES
     public function reload($id)
     {
 
         $likes = Like::where('table_id',$id)->count();
+
+        //
+        // Así no era muy funcional
+        //
+
         // $table = Table::find($id);
 
         // // Averiguar cuantos likes tiene la tabla y si el usuaria que esta viendo la pagina ha dado o no like
@@ -51,6 +52,7 @@ class LikeController extends Controller
         return $likes;
     }
 
+    //Función de dar like
     public function like($table_id){
 		// Recoger datos del usuario y la imagen
 		$user = Auth::user();
@@ -79,6 +81,7 @@ class LikeController extends Controller
 
 	}
 
+    //Función de dar dislike
 	public function dislike($table_id){
 		// Recoger datos del usuario y la imagen
 		$user = Auth::user();

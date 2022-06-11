@@ -21,11 +21,12 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-
+    //Vista de configuración
     public function config(){
         return view('user.config');
     }
 
+    //Actualizar usuario
     public function update(Request $request){
         //Usuario identificado
         $user = Auth::user();
@@ -74,11 +75,13 @@ class UserController extends Controller
                          ->with(['message'=>'Usuario actualizado correctamente']);
     }
 
+    //Mostrar imagen del usuario
     public function getImage($filename){
         $file = Storage::disk('users')->get($filename);
         return new Response($file);
     }
 
+    //Mostrar perfil NO ACTIVADO NO EXISTE RUTA
     public function profile($id){
         $user = User::find($id);
         return view('user.profile',[
