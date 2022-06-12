@@ -55,7 +55,13 @@ class TableController extends Controller
             //Guardo en la carpea Storage
             Storage::disk('tables')->put($image_path_name, File::get($image_path));
 
+        }else{
+            if(Table::find($request->id)){  //Con esto evito que al actualizar cambie la imagen a la de por defecto en caso de tener una imagen
+                $value = Table::find($request->id);
+                $image_path_name = $value->image_path;
+            }
         }
+
 
         $validator = Validator::make($request->all(), [
             'id' => 'nullable',
@@ -63,7 +69,7 @@ class TableController extends Controller
             'name' => 'required',
             'description' => 'required',
             'paid_mode' => 'nullable',
-            'image_path' => 'nullable'
+            'image_path' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:10000',
         ]);
 
 
