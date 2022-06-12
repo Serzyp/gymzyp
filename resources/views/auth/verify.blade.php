@@ -4,6 +4,7 @@
 {{ __('Verify') }}
 @endsection
 
+{{-- Pagina de confirmación del correo AUN EN PROCESO --}}
 
 @section('content')
 <div class="container">

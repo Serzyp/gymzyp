@@ -4,6 +4,8 @@
 {{ __('Completed payment') }}
 @endsection
 
+{{-- Página de que el pago se ha realizado correctamente --}}
+
 @section('content')
 <div class="container">
     <div class="row d-flex justify-content-center text-center">

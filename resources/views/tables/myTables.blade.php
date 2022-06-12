@@ -78,6 +78,7 @@
 
 
     </div>
+    {{-- Paginación --}}
     <div class="row mt-4">
         <div class="col">
             <div class="d-flex justify-content-center">
@@ -170,18 +171,18 @@
         });
         $('.summernote').summernote();
         clean_fields();
-
+        // Limpiar los campos del formulario
         function clean_fields() {
             $('#tablesFormTable').trigger("reset");
             resetErrorMsg();
             $('.error-text').text('');
         }
-
+        // Abrir el modal
         $('#tableNewTables').click(function() {
             clean_fields();
             $('#tablesModalTable').modal('show');
         });
-
+        // Añadir nueva tabla
         $('#tablesSubmitForm').click(function(e) {
             /** Problemas con serialize y default form upload
              *
@@ -283,6 +284,7 @@
             });
         });
 
+        // Imprimir mensajes de error
         function printErrorMsg(msg) {
             $('.error-text').text('');
             $.each(msg, function(key, value) {
@@ -291,6 +293,7 @@
             });
         }
 
+        // Reseetear mensajes de error
         function resetErrorMsg() {
             $('.error-text').text('');
         }

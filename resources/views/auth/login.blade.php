@@ -4,6 +4,7 @@
 {{ __('Login') }}
 @endsection
 
+{{-- Vista principal ventana de login --}}
 
 @section('content')
 <div class="container">

@@ -4,6 +4,7 @@
 {{ __('Confirm') }}
 @endsection
 
+{{-- Confirmacion de contraseña AUN EN PROCESO --}}
 
 @section('content')
 <div class="container">

@@ -40,6 +40,7 @@
 
 @section('js')
     <script type="text/javascript">
+    //Datatable
     $(document).ready(function() {
          var dataTable = $('#datatable').DataTable({
             dom: 'Bfrtip',

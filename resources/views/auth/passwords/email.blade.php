@@ -4,6 +4,7 @@
 {{ __('Email') }}
 @endsection
 
+{{-- Enviar reseteo de contraseña al correo --}}
 
 @section('content')
 <div class="container">

@@ -4,6 +4,8 @@
 {{ __('Failed payment') }}
 @endsection
 
+{{-- Página en la que se muestra que el pago ha sido rechazado --}}
+
 @section('content')
 <div class="container">
     <div class="row d-flex justify-content-center text-center">

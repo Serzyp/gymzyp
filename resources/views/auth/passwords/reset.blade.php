@@ -4,6 +4,7 @@
 {{ __('Reset') }}
 @endsection
 
+{{-- Vista de recuperacion de contraseña --}}
 
 @section('content')
 <div class="container">

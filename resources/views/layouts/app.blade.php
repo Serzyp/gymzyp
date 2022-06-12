@@ -134,14 +134,14 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                    <!-- Parte izquierda del menú -->
                     <ul class="navbar-nav me-auto">
 
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+                    <!-- Parte derecha del menú -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+                        <!-- Enlaces de autentificación -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
