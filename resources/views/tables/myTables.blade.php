@@ -114,11 +114,13 @@
                     </div>
                     <div class="form-group">
                         <label>{{ __('Title') }}</label>
+                        <div class="my-2 clearfix">
                         <input type="text" name="name" id="name" class="form-control" placeholder="Title">
                         <span class="text-danger error-text name_error"></span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
+                            <div class="my-2 clearfix">
                             <label>{{ __('Description') }}</label>
                             <textarea name="description" id="description" class="form-control summernote" cols="170" rows="5"></textarea>
                             <span class="text-danger error-text description_error"></span>
@@ -129,6 +131,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label>{{ __('Premium') }}</label>
+                                <div class="my-2 clearfix">
                                 <select name="paid_mode" class="form-select" id="paid_mode">
                                     <option value="0">{{ __('No') }}</option>
                                     <option value="1">{{ __('Yes') }}</option>

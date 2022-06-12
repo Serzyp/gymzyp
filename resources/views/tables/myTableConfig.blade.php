@@ -251,24 +251,24 @@
                             <span class="text-danger error-text table_id_error"></span>
                         </div>
                         <div class="form-group">
-                            <label>{{ __('Exercise name') }}: </label>
+                            <label class="my-2">{{ __('Exercise name') }}: </label>
                             <input type="text" class="form-control" id="content" name="content" placeholder="Press Bench">
                             <span class="text-danger error-text content_error"></span>
                         </div>
                         <div class="form-group">
-                            <label>{{ __('Sets') }}:</label>
+                            <label class="my-2">{{ __('Sets') }}:</label>
                             <input type="number" class="form-control" id="sets" name="sets" min="1" placeholder="3">
                             <span class="text-danger error-text sets_error"></span>
                         </div>
                         <div class="form-group">
                             {{-- Posibilidades de ser traducido en un futuro --}}
-                            <label>{{ __('Reps') }}:</label>
+                            <label class="my-2">{{ __('Reps') }}:</label>
                             <input type="text" class="form-control" id="reps" name="reps" placeholder="15 or 15-10-5 (Example)">
                             <span class="text-danger error-text reps_error"></span>
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Day') }}</label>
+                            <label class="my-2">{{ __('Day') }}:</label>
                             <select name="day_id" id="day_id" class="form-select">
                                 @foreach ($days as $day)
                                     <option value="{{ $day->id }}">{{ $day->day." - ".$day->moment }}</option>
@@ -314,13 +314,13 @@
                             <span class="text-danger error-text user_id_error"></span>
                         </div>
                         <div class="form-group">
-                            <label>{{ __('Title') }}</label>
+                            <label class="my-2">{{ __('Title') }}</label>
                             <input type="text" name="name" id="name" class="form-control" placeholder="Title">
                             <span class="text-danger error-text name_error"></span>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>{{ __('Description') }}</label>
+                                <label class="my-2">{{ __('Description') }}</label>
                                 <textarea name="description" id="description" class="form-control summernote" cols="170" rows="5"></textarea>
                                 <span class="text-danger error-text description_error"></span>
                             </div>
@@ -329,7 +329,7 @@
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label>{{ __('Premium') }}</label>
+                                    <label class="my-2">{{ __('Premium') }}</label>
                                     <select name="paid_mode" class="form-select" id="paid_mode">
                                         <option value="0">{{ __('No') }}</option>
                                         <option value="1">{{ __('Yes') }}</option>
@@ -340,8 +340,7 @@
                         @endif
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="image_path">{{ __('Imagen') }}</label>
-
+                                <label for="image_path" class="my-2">{{ __('Imagen') }}</label>
                                 <div class="col-md-6">
 
                                     <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path">

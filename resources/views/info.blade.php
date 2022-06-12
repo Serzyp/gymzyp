@@ -22,7 +22,7 @@
                     <p>{{ __('Everyone can benefit from the website, you can create, edit and view training charts, also in the chart description you can add your tips or diets.') }}</p>
                     <h2>{{ __('Advance Information') }}</h2>
                     <p>{{ __('If you have any doubts about how to use the website you can check the user manual.') }}</p>
-                    <a href="#" class="btn btn-info">{{ __('Manual User') }}</a>
+                    <a href="{{ asset('img/Manual_User_ES.pdf') }}" target="_blank" class="btn btn-info">{{ __('Manual User') }} (ES)</a>
                 </div>
 
             </div>
