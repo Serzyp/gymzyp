@@ -271,7 +271,7 @@
                             <label class="my-2">{{ __('Day') }}:</label>
                             <select name="day_id" id="day_id" class="form-select">
                                 @foreach ($days as $day)
-                                    <option value="{{ $day->id }}">{{ $day->day." - ".$day->moment }}</option>
+                                    <option value="{{ $day->id }}">{{ __($day->day)." - ".__($day->moment) }}</option>
                                 @endforeach
                             </select>
                             <span class="text-danger error-text day_id_error"></span>

@@ -23,7 +23,7 @@
         @if ($loop->first)
             <tr class="text-center bg-light">
                 <th></th>
-                <th colspan="3" style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #6766CC;color: black;border:2px solid black;">{{ $exercise->day }} - {{ $exercise->moment }}</th>
+                <th colspan="3" style="padding-top: 12px;padding-bottom: 12px;text-align: center;background-color: #6766CC;color: black;border:2px solid black;">{{ __($exercise->day) }} - {{ __($exercise->moment) }}</th>
             </tr>
             <tr>
                 <th></th>

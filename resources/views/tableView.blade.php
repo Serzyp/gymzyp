@@ -141,9 +141,9 @@
                 <div class="card-body">
                     <table class="table table-bordered">
                         @foreach ($exercises as $i => $exercise)
-                            @if ($loop->first)
+                            @if ($loop->first) {{-- Propio de laravel para la primera vez del foreach --}}
                                 <tr class="text-center bg-light">
-                                    <th colspan="3">{{ $exercise->day }} - {{ $exercise->moment }}</th>
+                                    <th colspan="3">{{ __($exercise->day) }} - {{ __($exercise->moment) }}</th>
                                 </tr>
                                 <tr class="text-center">
                                     <th>{{ __("Exercise") }}</th>
@@ -161,7 +161,7 @@
                             @else
                                 @if($exercises[$i]->day_id != $exercises[$n]->day_id)
                                     <tr class="text-center bg-light">
-                                        <th colspan="3">{{ $exercise->day }} - {{ $exercise->moment }}</th>
+                                        <th colspan="3">{{ __($exercise->day) }} - {{ __($exercise->moment) }}</th>
                                     </tr>
                                     <tr class="text-center">
                                         <th>{{ __("Exercise") }}</th>
