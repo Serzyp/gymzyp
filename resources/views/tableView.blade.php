@@ -145,15 +145,15 @@
                                 <tr class="text-center bg-light">
                                     <th colspan="3">{{ $exercise->day }} - {{ $exercise->moment }}</th>
                                 </tr>
-                                <tr>
+                                <tr class="text-center">
                                     <th>{{ __("Exercise") }}</th>
                                     <th>{{ __("Sets") }}</th>
                                     <th>{{ __("Reps") }}</th>
                                 </tr>
                                 <tr>
                                     <td>{{ $exercise->content }}</td>
-                                    <td>{{ $exercise->sets }}</td>
-                                    <td>{{ $exercise->reps }}</td>
+                                    <td class="text-center">{{ $exercise->sets }}</td>
+                                    <td class="text-center">{{ $exercise->reps }}</td>
                                 </tr>
                                 @php
                                     $n = $i;
@@ -163,15 +163,15 @@
                                     <tr class="text-center bg-light">
                                         <th colspan="3">{{ $exercise->day }} - {{ $exercise->moment }}</th>
                                     </tr>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>{{ __("Exercise") }}</th>
                                         <th>{{ __("Sets") }}</th>
                                         <th>{{ __("Reps") }}</th>
                                     </tr>
                                     <tr>
                                         <td>{{ $exercise->content }}</td>
-                                        <td>{{ $exercise->sets }}</td>
-                                        <td>{{ $exercise->reps }}</td>
+                                        <td class="text-center">{{ $exercise->sets }}</td>
+                                        <td class="text-center">{{ $exercise->reps }}</td>
                                     </tr>
                                     @php
                                         $n = $i;
@@ -179,8 +179,8 @@
                                 @else
                                     <tr>
                                         <td>{{ $exercise->content }}</td>
-                                        <td>{{ $exercise->sets }}</td>
-                                        <td>{{ $exercise->reps }}</td>
+                                        <td class="text-center">{{ $exercise->sets }}</td>
+                                        <td class="text-center">{{ $exercise->reps }}</td>
                                     </tr>
                                 @endif
                                 {{-- @if ($loop->last)
