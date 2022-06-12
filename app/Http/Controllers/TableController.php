@@ -69,7 +69,7 @@ class TableController extends Controller
             'name' => 'required',
             'description' => 'required',
             'paid_mode' => 'nullable',
-            'image_path' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:10000',
+            'image_path' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
 
